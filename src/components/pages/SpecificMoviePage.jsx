@@ -15,12 +15,20 @@ function SpecificMoviePage() {
             return <p>Loading...</p>;
         } else {
             return data.map((element) => {
-                <MovieItem title={element.title} />; //tt-id
+                renderPage(element);
             });
         }
     }
 
-    return <div>SpecificMoviePage</div>;
+    function renderPage(data){
+        <div>
+            <img src={data.image} alt="Poster" />
+            <h2>data.name</h2>
+            
+        </div>
+    }
+
+    return <div>{renderData()}</div>;
 }
 
 export default SpecificMoviePage;
