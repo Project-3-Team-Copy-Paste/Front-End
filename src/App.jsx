@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar/Navbar";
 import LibraryPage from "./components/pages/LibraryPage";
 import MainPage from "./components/pages/MainPage";
 import SpecificMoviePage from "./components/pages/SpecificMoviePage";
+import "./styles/App.css"
 
 function App() {
 	return (

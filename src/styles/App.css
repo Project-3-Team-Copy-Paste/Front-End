@@ -1,0 +1,31 @@
+body {
+    background-image: linear-gradient(to bottom right, #141d26, #243447, #c51f5d);
+    color: #fff;
+    background-repeat: no-repeat;
+}
+.App {
+    display: grid;
+    grid-template-columns: 100px minmax(300px, 1fr) 100px;
+    grid-template-rows: 150px 1fr 150px;
+}
+a {
+    color: #fff;
+    text-decoration: none;
+    text-shadow: #5af;
+}
+
+input[type="search"],
+textarea {
+    background-color: #243447;
+    color: white;
+    text-align: center;
+    border-radius: 10%;
+
+}
+::placeholder {
+    font-family: sans-serif;
+    color: #c51f5d;
+}
+input:focus::placeholder {
+    color: transparent;
+}
