@@ -1,7 +1,12 @@
 import React from "react";
 
 function SearchBar() {
-	return <div>SearchBar</div>;
+	return (
+		<>
+			<input type="search" name="" id="" placeholder="Search movie" />
+			<datalist id="movies"></datalist>
+		</>
+	);
 }
 
 export default SearchBar;
