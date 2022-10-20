@@ -1,3 +1,5 @@
+import { movies } from "./SeedMovies";
+
 async function fetchData(params) {
 	const responseData = {
 		0: {},
@@ -31,6 +33,29 @@ async function fetchData(params) {
 			tt_id: element.tt_url.replace('https://www.imdb.com/title/', ''),
 		};
 	});
+}
+
+export async function fetchAllMovies() {
+	try {
+		if (!movies) {
+			throw new Error("No movies in collection");
+		}
+		return movies;
+	} catch (err) {
+		console.error(err);
+	}
+}
+
+export async function fetchMovie(name) {
+	try {
+		const movie = movies.find((movie) => movie[1].jsonnnob.name === name);
+		if (!movie) {
+			throw new Error("Movie not found");
+		}
+		return movie;
+	} catch (err) {
+		console.error(err);
+	}
 }
 
 // async function fetchApi(params) {
