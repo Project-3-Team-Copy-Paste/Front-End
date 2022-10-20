@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import MovieItem from "../shared/MovieItem";
+import FetchData from "../../functions/fetch";
 
 function LibraryPage() {
-	return <div>LibraryPage</div>;
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        FetchData().then((fetchData) => {
+            setData(fetchData);
+        });
+    }, []);
+
+    
+    function renderData() {
+        if ((data.length = 0)) {
+            return <p>Loading...</p>;
+        } else {
+            return data.map((element) => {
+                <MovieItem title={element.title} />; //tt-id
+            });
+        }
+    }
+
+    return <div>{renderData()}</div>;
 }
 
 export default LibraryPage;
