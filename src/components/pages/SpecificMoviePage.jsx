@@ -23,8 +23,13 @@ function SpecificMoviePage() {
     function renderPage(data){
         <div>
             <img src={data.image} alt="Poster" />
-            <h2>data.name</h2>
-            
+            <h2>{data.name}</h2>
+            <h4>{data.datePublished}</h4>
+            <div>{data.contentRating}</div>
+            <div>{data.genre.map((genre)=>{
+                return <span>genre</span>
+            })}</div>
+            <p>{data.description}</p>
         </div>
     }
 
