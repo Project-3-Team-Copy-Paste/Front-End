@@ -29,3 +29,9 @@ textarea {
 input:focus::placeholder {
     color: transparent;
 }
+footer {
+height: "2rem";
+display: "flex";
+gap: "2rem";
+align-items: "center";
+}; 
