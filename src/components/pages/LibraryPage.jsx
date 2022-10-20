@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import MovieItem from "../shared/MovieItem";
-import FetchData from "../../functions/fetch";
+import fetchData from "../../functions/fetch";
 
 function LibraryPage() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        FetchData().then((fetchData) => {
-            setData(fetchData);
+        fetchData().then((res) => {
+            setData([...res]);
         });
     }, []);
 
-    
     function renderData() {
-        if ((data.length = 0)) {
+        if ((data.length === 0)) {
             return <p>Loading...</p>;
         } else {
-            return data.map((element) => {
-                <MovieItem title={element.title} />; //tt-id
+            return data.map((movie) => {
+                return <MovieItem key={movie.tt_id} movie={movie} />;
             });
         }
     }
