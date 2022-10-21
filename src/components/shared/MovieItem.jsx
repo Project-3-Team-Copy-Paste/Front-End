@@ -3,16 +3,13 @@ import { Link } from "react-router-dom";
 
 function MovieItem({ movie }) {
 	return (
-		<div className="movieItem">
-			<Link to={`/library/${movie.id}`}>
-				<img
+			<Link to={`/library/${movie.id}`} className={'movieItem'}>
+				<img className="movieItemPoster"
 					src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-					alt={movie.title}
-					style={{ height: "20rem" }}
+					alt={movie.original_title}
 				/>
-				<p className='hoverTitle'>{movie.original_title}</p>
+				<p className='hidden movieItemTitle'>{movie.original_title}</p>
 			</Link>
-		</div>
 	);
 }
 

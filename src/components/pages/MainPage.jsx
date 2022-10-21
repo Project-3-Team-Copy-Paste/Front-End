@@ -25,11 +25,11 @@ function MainPage() {
 
 	function render() {
 		return (
-			<>
+			<div className="bannerContainer">
 				<MoviesBanner movies={movies} />
 				<ReviewsBanner reviews={reviews} />
 				{/* <ReviewForm /> */}
-			</>
+			</div>
 		);
 	}
 

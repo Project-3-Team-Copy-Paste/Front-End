@@ -4,15 +4,12 @@ function Footer() {
 	return (
 		<div className="footer">
 			<div className="footerChild footerOne">
-				<div>
-
-					Copyright&copy;
-				</div>
-					<a href="https://github.com/vlados552">Vladislav
+					<div>&copy; 2022 by </div>
+					<a href="https://github.com/vlados552">Team 
 					</a>
-					<a href="https://github.com/vlados552">Jon
+					<a href="https://github.com/vlados552">Copy 
 					</a>
-					<a href="https://github.com/vlados552">Edward
+					<a href="https://github.com/vlados552">Paste.
 					</a>
 			</div>
 			<div className="footerChild footerTwo"></div>

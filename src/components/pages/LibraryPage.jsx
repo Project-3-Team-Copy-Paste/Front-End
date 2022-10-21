@@ -29,7 +29,7 @@ function LibraryPage() {
 		}
 	}
 
-	return <div className='libraryContainer'>{renderData()}</div>;
+	return <div className='movieItemList'>{renderData()}</div>;
 }
 
 export default LibraryPage;
