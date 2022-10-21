@@ -40,7 +40,7 @@ function SearchBar() {
 				name=""
 				id="search-movies"
 				list="result-movies"
-				placeholder="Search movie"
+				placeholder="find a movie"
 				autoComplete="off"
 				value={query}
 				onChange={(e) => {
@@ -52,7 +52,7 @@ function SearchBar() {
 					<option value={movie.title} key={index} />
 				))}
 			</datalist>
-			<button type="submit">Search</button>
+			<button type="submit">search</button>
 		</form>
 	);
 }

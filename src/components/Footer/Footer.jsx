@@ -3,16 +3,25 @@ import React from "react";
 function Footer() {
 	return (
 		<div className="footer">
-			<span className="footerItem">Copyright&copy;</span>
-			<span className="footerItem">
-				<a href="https://github.com/vlados552">Vladislav</a>
-			</span>
-			<span className="footerItem">
-				<a href="https://github.com/vlados552">Jon</a>
-			</span>
-			<span className="footerItem">
-				<a href="https://github.com/vlados552">Edward</a>
-			</span>
+			<div className="footerChild footerOne">
+
+					Copyright&copy;
+
+
+					<a href="https://github.com/vlados552">Vladislav
+					</a>
+
+
+					<a href="https://github.com/vlados552">Jon
+					</a>
+
+
+					<a href="https://github.com/vlados552">Edward
+					</a>
+
+			</div>
+			<div className="footerChild footerTwo"></div>
+
 		</div>
 	);
 }
