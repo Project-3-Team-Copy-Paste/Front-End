@@ -12,7 +12,7 @@ function MainPage() {
 		const fetchData = async () => {
 			try {
 				const movies = await fetchTrendingMovies(abortController.signal);
-				const reviewsResponse = await fetch("http://localhost:8000/reviews", {
+				const reviewsResponse = await fetch("https://reelz-backend.herokuapp.com/reviews/", {
 					signal: abortController.signal,
 				});
 				const reviews = await reviewsResponse.json();
@@ -34,8 +34,8 @@ function MainPage() {
 		return (
 			// <div className="bannerContainer">
 			<>
-				<MoviesBanner movies={movies} />
-				<ReviewsBanner reviews={reviews} />
+				{/* <MoviesBanner movies={movies} />
+				<ReviewsBanner reviews={reviews} /> */}
 				{/* <ReviewForm /> */}
 			</>
 			// </div>
