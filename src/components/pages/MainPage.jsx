@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReviewsBanner from "../shared/ReviewsBanner";
 import MoviesBanner from "../shared/MoviesBanner";
 import { fetchAllMovies } from "../../functions/fetch";
+import ReviewForm from "../shared/ReviewForm";
 
 function MainPage() {
 	const [movies, setMovies] = useState([]);
@@ -36,6 +37,7 @@ function MainPage() {
 				<MoviesBanner movies={movies} />
 				<h2>Reviews</h2>
 				<ReviewsBanner reviews={reviews} />
+				<ReviewForm />
 			</>
 		);
 	}
