@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import fetchData from '../../functions/fetch';
+import { fetchMovieById } from '../../functions/fetch';
 
 function SpecificMoviePage() {
 	const [data, setData] = useState([]);
 	const { movieID } = useParams();
 
 	useEffect(() => {
-		fetchData().then((fetchData) => {
-			console.log(fetchData);
-			setData(fetchData);
+		fetchMovieById(movieID).then((movie) => {
+			setData(movie);
 		});
 	}, []);
 
@@ -17,23 +16,32 @@ function SpecificMoviePage() {
 		if (data.length === 0) {
 			return <p>Loading...</p>;
 		} else {
-			return renderPage(data[0]);
+			return renderPage(data);
 		}
 	}
 
 	function renderPage(movie) {
 		return (
-			<div>
-				<img src={movie.jsonnnob.image} alt='Poster' />
-				<h2>{movie.jsonnnob.name}</h2>
-				<h4>{movie.jsonnnob.datePublished}</h4>
-				<div>{movie.jsonnnob.contentRating}</div>
+			<div
+				style={{
+					backgroundImage:
+						'url(' +
+						'https://image.tmdb.org/t/p/original' +
+						movie.backdrop_path +
+						')',
+				}}>
+				<img
+					src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+					alt='Poster'
+				/>
+				<h2>{movie.original_title}</h2>
+				<h4>{movie.release_date}</h4>
 				<div>
-					{movie.jsonnnob.genre.map((genre) => {
-						return <span key={genre}>{genre}</span>;
+					{movie.genres.map((genre) => {
+						return <span key={genre.id}>{genre.name}</span>;
 					})}
 				</div>
-				<p>{movie.jsonnnob.description}</p>
+				<p>{movie.overview}</p>
 			</div>
 		);
 	}
