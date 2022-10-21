@@ -1,7 +1,7 @@
 import React from "react";
 
 function MovieItem() {
-	return <div>MovieItem</div>;
+	return <div className="movieItem">MovieItem</div>;
 }
 
 export default MovieItem;

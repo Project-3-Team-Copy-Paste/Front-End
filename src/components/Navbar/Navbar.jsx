@@ -4,10 +4,16 @@ import SearchBar from "./SearchBar";
 
 function Navbar() {
 	return (
-		<div style={{ display: "flex", gap: "2rem" }}>
-			<NavLink to="/">Reels</NavLink>
-			<NavLink to="/library">Library</NavLink>
-			<SearchBar />
+		<div className="navBar">
+			<span className="reelsLink">
+				<NavLink to="/">Reels</NavLink>
+			</span>
+			<span className="libraryLink">
+				<NavLink to="/library">Library</NavLink>
+			</span>
+			<span className="searchBar">
+				<SearchBar />
+			</span>
 		</div>
 	);
 }
