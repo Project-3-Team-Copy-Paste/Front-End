@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchAllMovies, fetchMovie } from "../../functions/fetch";
+import { fetchMovieByName } from "../../functions/fetch";
 
 function SearchBar() {
 	const [query, setQuery] = useState("");
@@ -10,7 +10,7 @@ function SearchBar() {
 	useEffect(() => {
 		async function filterMovies(filter) {
 			try {
-				const movies = await fetchAllMovies();
+				const movies = await fetchMovieByName();
 				const filteredResults = movies.filter((movie) =>
 					movie["1"].jsonnnob.name.toLowerCase().includes(filter)
 				);
@@ -26,10 +26,10 @@ function SearchBar() {
 
 	const handleSubmit = useCallback(
 		async (name) => {
-			const movie = await fetchMovie(name);
-			const idStart = movie["1"].tt_url.lastIndexOf("/");
-			const id = movie["1"].tt_url.slice(idStart + 1);
-			navigate(`/library/${id}`);
+			// const movie = await fetchMovieByName(name);
+			// const idStart = movie["1"].tt_url.lastIndexOf("/");
+			// const id = movie["1"].tt_url.slice(idStart + 1);
+			// navigate(`/library/${id}`);
 		},
 		[navigate]
 	);
