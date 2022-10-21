@@ -1,10 +1,10 @@
-import { movies } from "./SeedMovies";
-import axios from "axios";
+import { movies } from './SeedMovies';
+import axios from 'axios';
 const KEY = process.env.REACT_APP_MOVIE_KEY;
 
 const searchObject = {
-	api: "https://api.themoviedb.org/3",
-	endpoints: ["/movie/popular?", "/movie/", "/search/movie?"],
+	api: 'https://api.themoviedb.org/3',
+	endpoints: ['/movie/popular?', '/movie/', '/search/movie?'],
 };
 
 export async function fetchTrendingMovies(signal) {
@@ -15,7 +15,7 @@ export async function fetchTrendingMovies(signal) {
 		);
 		return response.data;
 	} catch (err) {
-		if (err.name !== "CanceledError") {
+		if (err.name !== 'CanceledError') {
 			console.error(err);
 		}
 	}
@@ -29,7 +29,7 @@ export async function fetchMovieById(id, signal) {
 		);
 		return response.data;
 	} catch (err) {
-		if (err.name !== "CanceledError") {
+		if (err.name !== 'CanceledError') {
 			console.error(err);
 		}
 	}
@@ -43,7 +43,25 @@ export async function fetchMovieByName(name, signal) {
 		);
 		return response.data;
 	} catch (err) {
-		if (err.name !== "CanceledError") {
+		if (err.name !== 'CanceledError') {
+			console.error(err);
+		}
+	}
+}
+
+export async function fetchReviewsByMovieId(movieId, signal) {
+	const searchObject = {
+		api: 'localhost:8000',
+		endpoint: `/reviews/movie/${movieId}`,
+		searchParams: {},
+	};
+	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
+	url.search = new URLSearchParams(searchObject.searchParams).toString();
+	try {
+		const response = await axios.get(url, { signal });
+		return response.data;
+	} catch (err) {
+		if (err.name !== 'CanceledError') {
 			console.error(err);
 		}
 	}
