@@ -1,67 +1,36 @@
 import { movies } from "./SeedMovies";
+import axios from "axios";
+const KEY = process.env.REACT_APP_MOVIE_KEY;
 
-async function fetchData(params) {
-	const responseData = {
-		0: {},
-		1: {
-			tt_url: 'https://www.imdb.com/title/tt0111161',
-			jsonnnob: {
-				name: 'The Shawshank Redemption',
-				image:
-					'https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg',
-				description:
-					'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.',
-				genre: ['Drama'],
-				datePublished: '1994-10-14',
-				trailer: {
-					thumbnail: {
-						contentUrl:
-							'https://m.media-amazon.com/images/M/MV5BNjQ2NDA3MDcxMF5BMl5BanBnXkFtZTgwMjE5NTU0NzE@._V1_.jpg',
-					},
-					url: 'https://www.imdb.com/video/vi3877612057/',
-				},
-			},
-		},
-	};
+const searchObject = {
+	api: "https://api.themoviedb.org/3",
+	endpoints: ["/movie/popular?", "/movie/?", "/search/movie?"],
+};
 
-	const data = Object.values(responseData);
-	data.splice(0, 1);
+const defaultParams = new URLSearchParams(`api_key=${KEY}&language=en-US`);
 
-	return data.map((element) => {
-		return {
-			...element,
-			tt_id: element.tt_url.replace('https://www.imdb.com/title/', ''),
-		};
-	});
-}
-
-export async function fetchAllMovies() {
+export async function fetchTrendingMovies(signal) {
 	try {
-		if (!movies) {
-			throw new Error("No movies in collection");
-		}
-		return movies;
+		const response = await axios.get(
+			`${searchObject.api}${searchObject.endpoints[0]}api_key=${KEY}&language=en-US&page=1`,
+			{ signal }
+		);
+		return response.data;
 	} catch (err) {
-		console.error(err);
+		if (err.name !== "CanceledError") {
+			console.error(err);
+		}
 	}
 }
 
-export async function fetchMovie(name) {
-	try {
-		const movie = movies.find((movie) => movie[1].jsonnnob.name === name);
-		if (!movie) {
-			throw new Error("Movie not found");
-		}
-		return movie;
-	} catch (err) {
-		console.error(err);
-	}
-}
+export async function fetchMovieById(id, signal) {}
+
+export async function fetchMovieByName(name, signal) {}
 
 // async function fetchApi(params) {
 // 	const searchObject = {
-// 		api: 'https://i-m-d-b.herokuapp.com/',
-// 		endpoint: '',
+// 		api: "https://i-m-d-b.herokuapp.com/",
+// 		endpoint: "",
 // 		searchParams: params, //tt: '', q: '',
 // 	};
 
@@ -77,4 +46,4 @@ export async function fetchMovie(name) {
 // 	}
 // }
 
-export default fetchData;
+// export default fetchData;
