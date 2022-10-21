@@ -5,6 +5,7 @@ import { fetchAllMovies } from "../../functions/fetch";
 
 function MainPage() {
 	const [movies, setMovies] = useState([]);
+	console.log(movies)
 	const [reviews, setReviews] = useState([]);
 	useEffect(() => {
 		const abortController = new AbortController();
@@ -31,16 +32,16 @@ function MainPage() {
 
 	function render() {
 		return (
+			// <div className="bannerContainer">
 			<>
-				<h2>Movies</h2>
 				<MoviesBanner movies={movies} />
-				<h2>Reviews</h2>
 				<ReviewsBanner reviews={reviews} />
 			</>
+			// </div>
 		);
 	}
 
-	return <div>{render()}</div>;
+	return <div className="mainPage">{render()}</div>;
 }
 
 export default MainPage;
