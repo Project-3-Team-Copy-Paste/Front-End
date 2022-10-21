@@ -26,7 +26,7 @@ function MainPage() {
 	function render() {
 		return (
 			<>
-				{/* <MoviesBanner movies={movies} /> */}
+				<MoviesBanner movies={movies} />
 				<ReviewsBanner reviews={reviews} />
 				{/* <ReviewForm /> */}
 			</>

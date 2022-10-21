@@ -10,7 +10,7 @@ function MovieItem({ movie }) {
 					alt={movie.title}
 					style={{ height: "20rem" }}
 				/>
-				<p className="hidden">{movie.title}</p>
+				<p className='hoverTitle'>{movie.original_title}</p>
 			</Link>
 		</div>
 	);

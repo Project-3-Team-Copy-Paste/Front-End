@@ -93,7 +93,22 @@ button[type="submit"] {
 	box-shadow: 2px 1px #c51f5d;
 }
 button:hover {
-	color: red;
-	box-shadow: 1px 0.5px;
-	transition-duration: 1s;
+    color: red;
+    box-shadow: 1px .5px;
+    transition-duration: 500ms;
+}
+.libraryContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 600px));
+    grid-template-rows: minmax(250px, auto);
+    gap: 1rem;
+    justify-items: center;
+    align-items: center;
+}
+img{
+    float: left;
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+
 }
