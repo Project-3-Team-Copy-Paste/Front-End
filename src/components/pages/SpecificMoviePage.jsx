@@ -60,7 +60,7 @@ function SpecificMoviePage() {
 					})}
 				</div>
 				<p>{movie.overview}</p>
-				{renderReviews()}
+				{renderReviews(reviews)}
 			</div>
 		);
 	}
