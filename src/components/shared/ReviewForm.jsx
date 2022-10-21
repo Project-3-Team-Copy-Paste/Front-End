@@ -2,17 +2,8 @@ import React from "react";
 
 function ReviewForm() {
 	return (
-		<div
-			style={{
-				position: "absolute",
-				top: "50%",
-				left: "50%",
-				translate: "-50% -50%",
-				minWidth: "25rem",
-				minHeight: "40rem",
-				border: "5px solid black",
-			}}>
-			<form action="" style={{ margin: "2rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
+		<div>
+			<form action="">
 				<label htmlFor="title">Title</label>
 				<input type="text" id="title" />
 				<label htmlFor="body">Body</label>
@@ -30,5 +21,16 @@ function ReviewForm() {
 		</div>
 	);
 }
+
+// style={{
+// 				position: "absolute",
+// 				top: "50%",
+// 				left: "50%",
+// 				translate: "-50% -50%",
+// 				minWidth: "25rem",
+// 				minHeight: "40rem",
+// 				border: "5px solid black",
+// 			}}
+// style={{ margin: "2rem", display: "flex", flexDirection: "column", gap: "1rem" }}
 
 export default ReviewForm;

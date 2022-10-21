@@ -4,10 +4,8 @@ const KEY = process.env.REACT_APP_MOVIE_KEY;
 
 const searchObject = {
 	api: "https://api.themoviedb.org/3",
-	endpoints: ["/movie/popular?", "/movie/?", "/search/movie?"],
+	endpoints: ["/movie/popular?", "/movie/", "/search/movie?"],
 };
-
-const defaultParams = new URLSearchParams(`api_key=${KEY}&language=en-US`);
 
 export async function fetchTrendingMovies(signal) {
 	try {
@@ -23,27 +21,30 @@ export async function fetchTrendingMovies(signal) {
 	}
 }
 
-export async function fetchMovieById(id, signal) {}
+export async function fetchMovieById(id, signal) {
+	try {
+		const response = await axios.get(
+			`${searchObject.api}${searchObject.endpoints[1]}${id}?api_key=${KEY}&language=en-US`,
+			{ signal }
+		);
+		return response.data;
+	} catch (err) {
+		if (err.name !== "CanceledError") {
+			console.error(err);
+		}
+	}
+}
 
-export async function fetchMovieByName(name, signal) {}
-
-// async function fetchApi(params) {
-// 	const searchObject = {
-// 		api: "https://i-m-d-b.herokuapp.com/",
-// 		endpoint: "",
-// 		searchParams: params, //tt: '', q: '',
-// 	};
-
-// 	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
-// 	url.search = new URLSearchParams(searchObject.searchParams).toString();
-
-// 	try {
-// 		const response = await fetch(url);
-// 		const data = await response.json();
-// 		return data;
-// 	} catch (error) {
-// 		console.log(error);
-// 	}
-// }
-
-// export default fetchData;
+export async function fetchMovieByName(name, signal) {
+	try {
+		const response = await axios.get(
+			`${searchObject.api}${searchObject.endpoints[2]}api_key=${KEY}&language=en-US&query=${name}&page=1`,
+			{ signal }
+		);
+		return response.data;
+	} catch (err) {
+		if (err.name !== "CanceledError") {
+			console.error(err);
+		}
+	}
+}

@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import ReviewsBanner from "../shared/ReviewsBanner";
 import MoviesBanner from "../shared/MoviesBanner";
 import { fetchTrendingMovies } from "../../functions/fetch";
-import ReviewForm from "../shared/ReviewForm";
 
 function MainPage() {
 	const [movies, setMovies] = useState([]);
-	console.log(movies)
+	console.log(movies);
 	const [reviews, setReviews] = useState([]);
 	useEffect(() => {
 		const abortController = new AbortController();
@@ -37,7 +36,7 @@ function MainPage() {
 			<>
 				<MoviesBanner movies={movies} />
 				<ReviewsBanner reviews={reviews} />
-				<ReviewForm />
+				{/* <ReviewForm /> */}
 			</>
 			// </div>
 		);
