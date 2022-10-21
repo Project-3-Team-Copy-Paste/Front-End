@@ -6,9 +6,13 @@ function LibraryPage() {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
-		fetchTrendingMovies().then((res) => {
+		const abortController = new AbortController();
+		fetchTrendingMovies(abortController.signal).then((res) => {
 			setData([...res.results]);
 		});
+		return () => {
+			abortController.abort();
+		};
 	}, []);
 
 	function renderData() {
