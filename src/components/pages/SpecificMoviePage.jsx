@@ -1,39 +1,44 @@
-import React, { useEffect, useState } from "react";
-import FetchData from "../../functions/fetch";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import fetchData from '../../functions/fetch';
 
 function SpecificMoviePage() {
 	const [data, setData] = useState([]);
+	const { movieID } = useParams();
 
-    useEffect(() => {
-        FetchData().then((fetchData) => {
-            setData(fetchData);
-        });
-    }, []);
+	useEffect(() => {
+		fetchData().then((fetchData) => {
+			console.log(fetchData);
+			setData(fetchData);
+		});
+	}, []);
 
 	function renderData() {
-        if ((data.length = 0)) {
-            return <p>Loading...</p>;
-        } else {
-            return data.map((element) => {
-                renderPage(element);
-            });
-        }
-    }
+		if (data.length === 0) {
+			return <p>Loading...</p>;
+		} else {
+			return renderPage(data[0]);
+		}
+	}
 
-    function renderPage(data){
-        <div>
-            <img src={data.image} alt="Poster" />
-            <h2>{data.name}</h2>
-            <h4>{data.datePublished}</h4>
-            <div>{data.contentRating}</div>
-            <div>{data.genre.map((genre)=>{
-                return <span>genre</span>
-            })}</div>
-            <p>{data.description}</p>
-        </div>
-    }
+	function renderPage(movie) {
+		return (
+			<div>
+				<img src={movie.jsonnnob.image} alt='Poster' />
+				<h2>{movie.jsonnnob.name}</h2>
+				<h4>{movie.jsonnnob.datePublished}</h4>
+				<div>{movie.jsonnnob.contentRating}</div>
+				<div>
+					{movie.jsonnnob.genre.map((genre) => {
+						return <span key={genre}>{genre}</span>;
+					})}
+				</div>
+				<p>{movie.jsonnnob.description}</p>
+			</div>
+		);
+	}
 
-    return <div>{renderData()}</div>;
+	return <div>{renderData()}</div>;
 }
 
 export default SpecificMoviePage;
