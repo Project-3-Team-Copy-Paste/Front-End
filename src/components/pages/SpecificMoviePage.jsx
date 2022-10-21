@@ -5,20 +5,22 @@ import ReviewsBanner from '../shared/ReviewsBanner';
 
 function SpecificMoviePage() {
 	const [data, setData] = useState(null);
-	const [reviews, setReviews] = useState([]);
+	const [reviews, setReviews] = useState(null);
 	const { movieID } = useParams();
 
 	useEffect(() => {
 		const abortController = new AbortController();
 		fetchMovieById(movieID, abortController.signal).then((movie) => {
+			console.log(movie);
 			setData(movie);
 		});
 		fetchReviewsByMovieId(movieID, abortController.signal).then((reviews) => {
+			console.log(reviews);
 			setReviews([...reviews]);
 		});
 
 		return () => {
-			abortController.abort();
+			//abortController.abort();
 		};
 	}, []);
 
@@ -31,8 +33,14 @@ function SpecificMoviePage() {
 	}
 
 	function renderReviews(reviews) {
-		if (reviews.length === 0) {
+		if (reviews === null) {
 			return <p>Loading...</p>;
+		} else if (reviews.length === 0) {
+			return (
+				<p>
+					We don't have any reviews on this movie yet. Do you wanna be first?
+				</p>
+			);
 		} else {
 			<ReviewsBanner reviews={reviews} />;
 		}

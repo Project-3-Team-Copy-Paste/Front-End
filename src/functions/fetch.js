@@ -52,13 +52,13 @@ export async function fetchMovieByName(name, signal) {
 export async function fetchReviewsByMovieId(movieId, signal) {
 	const searchObject = {
 		api: 'https://reelz-backend.herokuapp.com/',
-		endpoint: `/reviews/movie/${movieId}`,
+		endpoint: `reviews/movie/${movieId}`,
 		searchParams: {},
 	};
 	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
 	url.search = new URLSearchParams(searchObject.searchParams).toString();
 	try {
-		const response = await axios.get(url, { signal });
+		const response = await axios.get(url.href, { signal });
 		return response.data;
 	} catch (err) {
 		if (err.name !== 'CanceledError') {
