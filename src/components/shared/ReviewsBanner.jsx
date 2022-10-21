@@ -3,10 +3,13 @@ import Review from "./Review";
 
 function ReviewsBanner({ reviews }) {
 	return (
-		<div style={{ display: "flex", gap: "2rem" }}>
-			{reviews.map((review, index) => (
+		<div className="bannerContainer reviewBannerContainer">
+			<h2>Reviews</h2>
+			<div className="banner reviewBanner">
+				{reviews.map((review, index) => (
 				<Review key={index} review={review} />
-			))}
+				))}
+			</div>
 		</div>
 	);
 }

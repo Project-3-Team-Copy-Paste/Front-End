@@ -9,15 +9,15 @@ import "./styles/App.css"
 
 function App() {
 	return (
-		<>
+		<div className="app">
 			<Navbar />
-			<Routes>
-				<Route path="/" element={<MainPage />}></Route>
-				<Route path="/library" element={<LibraryPage />}></Route>
-				<Route path="/library/:movieID" element={<SpecificMoviePage />}></Route>
-			</Routes>
+				<Routes>
+					<Route path="/" element={<MainPage />}></Route>
+					<Route path="/library" element={<LibraryPage />}></Route>
+					<Route path="/library/:movieID" element={<SpecificMoviePage />}></Route>
+				</Routes>
 			<Footer />
-		</>
+		</div>
 	);
 }
 

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { fetchMovieById } from "../../functions/fetch";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { fetchMovieById } from '../../functions/fetch';
 
 function SpecificMoviePage() {
 	const [data, setData] = useState([]);
@@ -24,9 +24,16 @@ function SpecificMoviePage() {
 		return (
 			<div
 				style={{
-					backgroundImage: "url(" + "https://image.tmdb.org/t/p/original" + movie.backdrop_path + ")",
+					backgroundImage:
+						'url(' +
+						'https://image.tmdb.org/t/p/original' +
+						movie.backdrop_path +
+						')',
 				}}>
-				<img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt="Poster" />
+				<img
+					src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+					alt='Poster'
+				/>
 				<h2>{movie.original_title}</h2>
 				<h4>{movie.release_date}</h4>
 				<div>

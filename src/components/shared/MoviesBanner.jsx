@@ -3,10 +3,13 @@ import MovieItem from "./MovieItem";
 
 function MoviesBanner({ movies }) {
 	return (
-		<div style={{ display: "flex", gap: "2rem" }}>
-			{movies.map((movie, index) => (
+		<div className="bannerContainer movieBannerContainer">
+			<h2>Movies</h2>
+			<div className="banner movieBanner">
+				{movies.map((movie, index) => (
 				<MovieItem key={index} movie={movie} />
-			))}
+				))}
+			</div>
 		</div>
 	);
 }

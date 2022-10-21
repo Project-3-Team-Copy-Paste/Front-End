@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import MovieItem from "../shared/MovieItem";
-import { fetchTrendingMovies } from "../../functions/fetch";
+import React, { useEffect, useState } from 'react';
+import MovieItem from '../shared/MovieItem';
+import { fetchTrendingMovies } from '../../functions/fetch';
 
 function LibraryPage() {
 	const [data, setData] = useState([]);
