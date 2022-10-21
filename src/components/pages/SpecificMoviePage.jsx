@@ -1,22 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { fetchMovieById } from '../../functions/fetch';
+import { fetchMovieById, fetchReviewsByMovieId } from '../../functions/fetch';
+import ReviewsBanner from '../shared/ReviewsBanner';
 
 function SpecificMoviePage() {
-	const [data, setData] = useState([]);
+	const [data, setData] = useState(null);
+	const [reviews, setReviews] = useState([]);
 	const { movieID } = useParams();
 
 	useEffect(() => {
-		fetchMovieById(movieID).then((movie) => {
+		const abortController = new AbortController();
+		fetchMovieById(movieID, abortController.signal).then((movie) => {
 			setData(movie);
 		});
+		fetchReviewsByMovieId(movieID, abortController.signal).then((reviews) => {
+			setReviews([...reviews]);
+		});
+
+		return () => {
+			abortController.abort();
+		};
 	}, []);
 
 	function renderData() {
-		if (data.length === 0) {
+		if (data === null) {
 			return <p>Loading...</p>;
 		} else {
 			return renderPage(data);
+		}
+	}
+
+	function renderReviews(reviews) {
+		if (reviews.length === 0) {
+			return <p>Loading...</p>;
+		} else {
+			<ReviewsBanner reviews={reviews} />;
 		}
 	}
 
@@ -42,6 +60,7 @@ function SpecificMoviePage() {
 					})}
 				</div>
 				<p>{movie.overview}</p>
+				{renderReviews()}
 			</div>
 		);
 	}
