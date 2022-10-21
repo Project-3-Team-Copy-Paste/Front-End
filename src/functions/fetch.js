@@ -51,7 +51,7 @@ export async function fetchMovieByName(name, signal) {
 
 export async function fetchReviewsByMovieId(movieId, signal) {
 	const searchObject = {
-		api: 'localhost:8000',
+		api: 'https://reelz-backend.herokuapp.com/',
 		endpoint: `/reviews/movie/${movieId}`,
 		searchParams: {},
 	};
