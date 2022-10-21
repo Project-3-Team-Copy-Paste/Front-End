@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
-import { fetchMovieById } from '../../functions/fetch';
-=======
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { fetchMovieById } from "../../functions/fetch";
->>>>>>> 7d3602e (Add fetchTrendingMovies function and cleanup function for library)
 
 function SpecificMoviePage() {
 	const [data, setData] = useState([]);
