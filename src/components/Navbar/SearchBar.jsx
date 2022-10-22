@@ -8,28 +8,23 @@ function SearchBar() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		async function filterMovies(filter) {
-			try {
-				const movies = await fetchMovieByName();
-				const filteredResults = movies.filter((movie) =>
-					movie["1"].jsonnnob.name.toLowerCase().includes(filter)
-				);
-				setResults(filteredResults);
-			} catch (err) {
-				console.error(err);
-			}
-		}
 		if (query) {
-			filterMovies(query.toLowerCase());
+			const abortController = new AbortController();
+			fetchMovieByName(query, abortController.signal).then((movies) => {
+				if (movies) {
+					setResults(movies.results);
+				}
+			});
+			return () => {
+				abortController.abort();
+			};
 		}
 	}, [query]);
 
 	const handleSubmit = useCallback(
 		async (name) => {
-			// const movie = await fetchMovieByName(name);
-			// const idStart = movie["1"].tt_url.lastIndexOf("/");
-			// const id = movie["1"].tt_url.slice(idStart + 1);
-			// navigate(`/library/${id}`);
+			const movie = await fetchMovieByName(name);
+			navigate(`/library/${movie.results[0].id}`);
 		},
 		[navigate]
 	);
@@ -48,11 +43,13 @@ function SearchBar() {
 				placeholder="Search movie"
 				autoComplete="off"
 				value={query}
-				onChange={(e) => setQuery(e.currentTarget.value)}
+				onChange={(e) => {
+					setQuery(e.currentTarget.value);
+				}}
 			/>
 			<datalist id="result-movies">
-				{results.map((result, index) => (
-					<option value={result["1"].jsonnnob.name} key={index} />
+				{results.map((movie, index) => (
+					<option value={movie.title} key={index} />
 				))}
 			</datalist>
 			<button type="submit">Search</button>

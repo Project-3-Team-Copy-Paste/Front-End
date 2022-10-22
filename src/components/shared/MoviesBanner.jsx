@@ -6,8 +6,8 @@ function MoviesBanner({ movies }) {
 		<div className="bannerContainer movieBannerContainer">
 			<h2>Movies</h2>
 			<div className="banner movieBanner">
-				{movies.map((movie, index) => (
-				<MovieItem key={index} movie={movie} />
+				{movies.map((movie) => (
+					<MovieItem key={movie.id} movie={movie} />
 				))}
 			</div>
 		</div>
