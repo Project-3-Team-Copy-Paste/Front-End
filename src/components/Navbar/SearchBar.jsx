@@ -11,10 +11,8 @@ function SearchBar() {
 
 	useEffect(() => {
 		if (query) {
-			console.log(query);
 			const abortController = new AbortController();
 			fetchMovieByName(query, abortController.signal).then((movies) => {
-				console.log(movies);
 				if (movies) {
 					setResults(movies.results);
 				}
@@ -29,9 +27,6 @@ function SearchBar() {
 		async (name) => {
 			const movie = await fetchMovieByName(name);
 			navigate(`/library/${movie.results[0].id}`);
-			// const idStart = movie["1"].tt_url.lastIndexOf("/");
-			// const id = movie["1"].tt_url.slice(idStart + 1);
-			// navigate(`/library/${id}`);
 		},
 		[navigate]
 	);
