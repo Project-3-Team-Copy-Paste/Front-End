@@ -1,4 +1,3 @@
-import { movies } from "./SeedMovies";
 import axios from "axios";
 const KEY = process.env.REACT_APP_MOVIE_KEY;
 

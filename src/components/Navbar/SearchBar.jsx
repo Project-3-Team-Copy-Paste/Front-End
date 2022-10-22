@@ -2,8 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchMovieByName } from "../../functions/fetch";
 
-function useSearch(query, setResults, setLoading) {}
-
 function SearchBar() {
 	const [query, setQuery] = useState("");
 	const [results, setResults] = useState([]);
