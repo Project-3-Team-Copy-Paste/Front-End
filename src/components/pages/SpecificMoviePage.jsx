@@ -33,16 +33,6 @@ function SpecificMoviePage() {
 		}
 	}
 
-	function renderReviews(reviews) {
-		if (reviews === null) {
-			return <p>Loading...</p>;
-		} else if (reviews.length === 0) {
-			return <p>We don't have any reviews on this movie yet. Do you wanna be first?</p>;
-		} else {
-			<ReviewsBanner reviews={reviews} />;
-		}
-	}
-
 	function renderPage(movie) {
 		if (!movie) {
 			return <div>No movie found!</div>;
@@ -51,8 +41,14 @@ function SpecificMoviePage() {
 			<div
 				style={{
 					backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie["backdrop_path"]})`,
+					backgroundRepeat: "no-repeat",
+					backgroundSize: "100% auto",
 				}}>
-				<img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt="Poster" />
+				<img
+					src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+					alt="Poster"
+					style={{ height: "25rem" }}
+				/>
 				<h2>{movie.title}</h2>
 				<h4>{movie.release_date}</h4>
 				<div>
@@ -61,7 +57,7 @@ function SpecificMoviePage() {
 					})}
 				</div>
 				<p>{movie.overview}</p>
-				{renderReviews(reviews)}
+				<ReviewsBanner reviews={reviews} movieTitle={movie.title} movieID={movie.id} />
 			</div>
 		);
 	}
