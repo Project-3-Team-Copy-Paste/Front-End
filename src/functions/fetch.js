@@ -15,9 +15,9 @@ export async function fetchTrendingMovies(signal) {
 		return response.data;
 	} catch (err) {
 		if (err.name !== "CanceledError") {
-			return Promise.reject(err);
+			throw err;
 		}
-		return Promise.resolve([]);
+		return { results: [] };
 	}
 }
 
@@ -32,9 +32,9 @@ export async function fetchMovieById(id, signal) {
 		return response.data;
 	} catch (err) {
 		if (err.name !== "CanceledError") {
-			return Promise.reject(err);
+			throw err;
 		}
-		return Promise.resolve(null);
+		return null;
 	}
 }
 
@@ -47,9 +47,9 @@ export async function fetchMovieByName(name, signal) {
 		return response.data;
 	} catch (err) {
 		if (err.name !== "CanceledError") {
-			return Promise.reject(err);
+			throw err;
 		}
-		return Promise.resolve([]);
+		return null;
 	}
 }
 
@@ -66,9 +66,9 @@ export async function fetchAllReviews(signal) {
 		return response.data;
 	} catch (err) {
 		if (err.name !== "CanceledError") {
-			return Promise.reject(err);
+			throw err;
 		}
-		return Promise.resolve([]);
+		return [];
 	}
 }
 
@@ -85,8 +85,56 @@ export async function fetchReviewsByMovieId(movieId, signal) {
 		return response.data;
 	} catch (err) {
 		if (err.name !== "CanceledError") {
-			return Promise.reject(err);
+			throw err;
 		}
-		return Promise.resolve([]);
+		return [];
+	}
+}
+
+export async function postReview(reviewBody) {
+	const searchObject = {
+		api: "https://reelz-backend.herokuapp.com/",
+		endpoint: `reviews`,
+	};
+	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
+	try {
+		const response = await axios.post(url.href, reviewBody);
+		return response.data;
+	} catch (err) {
+		throw err;
+	}
+}
+
+export async function editReview(reviewBody, reviewId) {
+	const searchObject = {
+		api: "https://reelz-backend.herokuapp.com/",
+		endpoint: `reviews/${reviewId}`,
+	};
+	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
+	try {
+		const response = await axios.put(url.href, reviewBody);
+		return response.data;
+	} catch (err) {
+		throw err;
+	}
+}
+
+export async function fetchAllUsers(signal) {
+	const searchObject = {
+		api: "https://reelz-backend.herokuapp.com/",
+		endpoint: `users`,
+		searchParams: {},
+	};
+	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
+	url.search = new URLSearchParams(searchObject.searchParams).toString();
+	try {
+		const response = await axios.get(url.href, { signal });
+		return response.data;
+	} catch (err) {
+		// console.log(err);
+		if (err.name !== "CanceledError") {
+			throw err;
+		}
+		return [];
 	}
 }

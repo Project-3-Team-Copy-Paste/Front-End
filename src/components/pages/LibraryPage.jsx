@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import MovieItem from '../shared/MovieItem';
-import { fetchTrendingMovies } from '../../functions/fetch';
+import React, { useEffect, useState } from "react";
+import MovieItem from "../shared/MovieItem";
+import { fetchTrendingMovies } from "../../functions/fetch";
 
 function LibraryPage() {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
 		const abortController = new AbortController();
-		fetchTrendingMovies(abortController.signal).then((res) => {
-			setData([...res.results]);
-		});
+		fetchTrendingMovies(abortController.signal)
+			.then((res) => {
+				setData(res.results);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
 		return () => {
 			abortController.abort();
 		};

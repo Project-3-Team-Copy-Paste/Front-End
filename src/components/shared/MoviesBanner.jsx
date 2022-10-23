@@ -6,9 +6,11 @@ function MoviesBanner({ movies }) {
 		<div className="bannerContainer movieBannerContainer">
 			<h2>Movies</h2>
 			<div className="banner movieBanner">
-				{movies.map((movie) => (
-					<MovieItem key={movie.id} movie={movie} />
-				))}
+				{movies.length > 0 ? (
+					movies.map((movie) => <MovieItem key={movie.id} movie={movie} />)
+				) : (
+					<div>No movies</div>
+				)}
 			</div>
 		</div>
 	);
