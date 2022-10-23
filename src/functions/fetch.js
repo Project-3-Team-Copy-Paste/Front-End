@@ -91,16 +91,28 @@ export async function fetchReviewsByMovieId(movieId, signal) {
 	}
 }
 
-export async function postReview(reviewBody, signal) {
+export async function postReview(reviewBody) {
 	const searchObject = {
 		api: "https://reelz-backend.herokuapp.com/",
 		endpoint: `reviews`,
-		searchParams: {},
 	};
 	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
-	url.search = new URLSearchParams(searchObject.searchParams).toString();
 	try {
-		const response = await axios.post(url.href, reviewBody, { signal });
+		const response = await axios.post(url.href, reviewBody);
+		return response.data;
+	} catch (err) {
+		throw err;
+	}
+}
+
+export async function editReview(reviewBody, reviewId) {
+	const searchObject = {
+		api: "https://reelz-backend.herokuapp.com/",
+		endpoint: `reviews/${reviewId}`,
+	};
+	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
+	try {
+		const response = await axios.put(url.href, reviewBody);
 		return response.data;
 	} catch (err) {
 		throw err;

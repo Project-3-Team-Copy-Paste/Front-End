@@ -1,35 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { fetchAllUsers, postReview } from "../../functions/fetch";
+import React, { useState } from "react";
+import { editReview } from "../../functions/fetch";
 
 const inputStyle = {
 	color: "black",
 	borderRadius: "3px",
 };
 
-const initialValues = {
-	title: "",
-	body: "",
-	rating: 5,
-	author: "",
-};
-
-function ReviewForm({ setModal, movieTitle, movieID }) {
-	const [users, setUsers] = useState(null);
-	const [formValues, setFormValues] = useState(initialValues);
-
-	useEffect(() => {
-		const abortController = new AbortController();
-		fetchAllUsers(abortController.signal)
-			.then((res) => setUsers(res))
-			.catch((err) => {
-				if (!abortController.signal.aborted) {
-					console.error(err);
-				}
-			});
-		return () => {
-			abortController.abort();
-		};
-	}, []);
+function ReviewEditForm({ setModal, movieTitle, review }) {
+	const [formValues, setFormValues] = useState({ title: review.title, body: review.body, rating: review.rating });
 
 	function handleChange(e) {
 		setFormValues({
@@ -41,7 +19,7 @@ function ReviewForm({ setModal, movieTitle, movieID }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		postReview({ movie: movieID, ...formValues })
+		editReview({ id: review._id, movie: review.movie, ...formValues, author: review.author }, review._id)
 			.then((res) => {
 				setModal(false);
 			})
@@ -114,20 +92,6 @@ function ReviewForm({ setModal, movieTitle, movieID }) {
 						onChange={handleChange}
 						style={inputStyle}
 					/>
-					<label htmlFor="author">Author</label>
-					<select
-						name="user"
-						id="author"
-						required={true}
-						value={formValues.author}
-						onChange={handleChange}
-						style={inputStyle}>
-						{users && users.length > 0 ? (
-							users.map((user) => <option label={user.username} value={user._id} key={user._id} />)
-						) : (
-							<option disabled={true}>No users</option>
-						)}
-					</select>
 					<button type="submit">Submit</button>
 				</form>
 			</div>
@@ -135,4 +99,4 @@ function ReviewForm({ setModal, movieTitle, movieID }) {
 	);
 }
 
-export default ReviewForm;
+export default ReviewEditForm;
