@@ -1,19 +1,18 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { fetchAllUsers, postReview } from "../../functions/fetch";
+import React, { useState } from "react";
+import { signIn } from "../../functions/fetch";
 
 const inputStyle = {
 	color: "black",
 	borderRadius: "3px",
 };
 
-const initialValues = {
-	title: "",
-	body: "",
-	rating: 5,
+const initialState = {
+	username: "",
+	password: "",
 };
 
-function ReviewForm({ setModal, setFetch, movieTitle, movieID, curUser }) {
-	const [formValues, setFormValues] = useState(initialValues);
+function LoginForm({ setModal, setToken }) {
+	const [formValues, setFormValues] = useState(initialState);
 
 	function handleChange(e) {
 		setFormValues({
@@ -24,18 +23,16 @@ function ReviewForm({ setModal, setFetch, movieTitle, movieID, curUser }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		const jwtToken = localStorage.getItem("JWT");
-		postReview({ movie: `${movieID}`, ...formValues, author: curUser }, jwtToken)
+		console.log(formValues);
+		signIn(formValues)
 			.then((res) => {
+				localStorage.setItem("JWT", res.token);
+				localStorage.setItem("username", res.username);
+				setToken(res.token);
 				setModal(false);
-				setFetch((c) => c + 1);
 			})
-			.catch((err) => {
-				console.error(err);
-			});
+			.catch((err) => console.error(err.response.data));
 	}
-
-	// console.log(users);
 
 	return (
 		<div
@@ -70,36 +67,25 @@ function ReviewForm({ setModal, setFetch, movieTitle, movieID, curUser }) {
 						color: "black",
 					}}
 					onSubmit={handleSubmit}>
-					<h3>{movieTitle}</h3>
-					<label htmlFor="title">Title</label>
+					<label htmlFor="username">Username</label>
 					<input
 						type="text"
-						name="title"
-						id="title"
+						name="username"
+						id="username"
 						required={true}
-						value={formValues.title}
+						value={formValues.username}
 						onChange={handleChange}
 						style={inputStyle}
 					/>
-					<label htmlFor="body">Body</label>
-					<textarea
-						name="body"
-						id="body"
-						cols="30"
-						rows="10"
-						value={formValues.body}
-						onChange={handleChange}
-						style={inputStyle}></textarea>
-					<label htmlFor="rating">Rating</label>
+					<label htmlFor="password">Password</label>
 					<input
-						type="number"
-						name="rating"
-						id="rating"
-						value={formValues.rating}
+						type="password"
+						name="password"
+						id="password"
+						value={formValues.password}
 						onChange={handleChange}
 						style={inputStyle}
 					/>
-					<p>{`Author: ${curUser}`}</p>
 					<button type="submit">Submit</button>
 				</form>
 			</div>
@@ -107,4 +93,4 @@ function ReviewForm({ setModal, setFetch, movieTitle, movieID, curUser }) {
 	);
 }
 
-export default ReviewForm;
+export default LoginForm;

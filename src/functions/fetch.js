@@ -1,5 +1,7 @@
 import axios from "axios";
 const KEY = process.env.REACT_APP_MOVIE_KEY;
+const SERVER =
+	process.env.NODE_ENV === "development" ? "http://localhost:8000" : "https://reelz-backend.herokuapp.com/";
 
 const searchObject = {
 	api: "https://api.themoviedb.org/3",
@@ -55,7 +57,7 @@ export async function fetchMovieByName(name, signal) {
 
 export async function fetchAllReviews(signal) {
 	const searchObject = {
-		api: "https://reelz-backend.herokuapp.com/",
+		api: SERVER,
 		endpoint: `reviews`,
 		searchParams: {},
 	};
@@ -74,7 +76,7 @@ export async function fetchAllReviews(signal) {
 
 export async function fetchReviewsByMovieId(movieId, signal) {
 	const searchObject = {
-		api: "https://reelz-backend.herokuapp.com/",
+		api: SERVER,
 		endpoint: `reviews/movie/${movieId}`,
 		searchParams: {},
 	};
@@ -91,28 +93,43 @@ export async function fetchReviewsByMovieId(movieId, signal) {
 	}
 }
 
-export async function postReview(reviewBody) {
+export async function postReview(reviewBody, jwtToken) {
 	const searchObject = {
-		api: "https://reelz-backend.herokuapp.com/",
+		api: SERVER,
 		endpoint: `reviews`,
 	};
 	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
 	try {
-		const response = await axios.post(url.href, reviewBody);
+		const response = await axios.post(url.href, reviewBody, { headers: { Authorization: `bearer ${jwtToken}` } });
 		return response.data;
 	} catch (err) {
 		throw err;
 	}
 }
 
-export async function editReview(reviewBody, reviewId) {
+export async function editReview(reviewBody, reviewId, jwtToken) {
 	const searchObject = {
-		api: "https://reelz-backend.herokuapp.com/",
+		api: SERVER,
 		endpoint: `reviews/${reviewId}`,
 	};
 	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
 	try {
-		const response = await axios.put(url.href, reviewBody);
+		const response = await axios.put(url.href, reviewBody, { headers: { Authorization: `bearer ${jwtToken}` } });
+		return response.data;
+	} catch (err) {
+		throw err;
+	}
+}
+
+export async function deleteReview(reviewId, jwtToken) {
+	const searchObject = {
+		api: SERVER,
+		endpoint: `reviews/${reviewId}`,
+	};
+	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
+	console.log(url);
+	try {
+		const response = await axios.delete(url.href, { headers: { Authorization: `bearer ${jwtToken}` } });
 		return response.data;
 	} catch (err) {
 		throw err;
@@ -121,7 +138,7 @@ export async function editReview(reviewBody, reviewId) {
 
 export async function fetchAllUsers(signal) {
 	const searchObject = {
-		api: "https://reelz-backend.herokuapp.com/",
+		api: SERVER,
 		endpoint: `users`,
 		searchParams: {},
 	};
@@ -136,5 +153,33 @@ export async function fetchAllUsers(signal) {
 			throw err;
 		}
 		return [];
+	}
+}
+
+export async function signUp(loginInfo) {
+	const searchObject = {
+		api: SERVER,
+		endpoint: `users/signup`,
+	};
+	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
+	try {
+		const response = await axios.post(url.href, loginInfo);
+		return response.data;
+	} catch (err) {
+		throw err;
+	}
+}
+
+export async function signIn(loginInfo) {
+	const searchObject = {
+		api: SERVER,
+		endpoint: `users/signin`,
+	};
+	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
+	try {
+		const response = await axios.post(url.href, loginInfo);
+		return response.data;
+	} catch (err) {
+		throw err;
 	}
 }

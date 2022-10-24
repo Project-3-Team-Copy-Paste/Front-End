@@ -6,6 +6,7 @@ import ReviewsBanner from "../shared/ReviewsBanner";
 function SpecificMoviePage() {
 	const [data, setData] = useState(null);
 	const [reviews, setReviews] = useState(null);
+	const [fetch, setFetch] = useState(0);
 	const { movieID } = useParams();
 
 	useEffect(() => {
@@ -23,7 +24,7 @@ function SpecificMoviePage() {
 		return () => {
 			abortController.abort();
 		};
-	}, [movieID]);
+	}, [movieID, fetch]);
 
 	function renderData() {
 		if (data === null) {
@@ -57,7 +58,7 @@ function SpecificMoviePage() {
 					})}
 				</div>
 				<p>{movie.overview}</p>
-				<ReviewsBanner reviews={reviews} movieTitle={movie.title} movieID={movie.id} />
+				<ReviewsBanner reviews={reviews} movieTitle={movie.title} movieID={movie.id} setFetch={setFetch} />
 			</div>
 		);
 	}

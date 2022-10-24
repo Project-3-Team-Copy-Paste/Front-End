@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { editReview } from "../../functions/fetch";
+import React, { useMemo, useState } from "react";
+import { deleteReview, editReview } from "../../functions/fetch";
 
 const inputStyle = {
 	color: "black",
 	borderRadius: "3px",
 };
 
-function ReviewEditForm({ setModal, movieTitle, review }) {
+function ReviewEditForm({ setModal, movieTitle, review, setFetch }) {
 	const [formValues, setFormValues] = useState({ title: review.title, body: review.body, rating: review.rating });
 
 	function handleChange(e) {
@@ -14,21 +14,33 @@ function ReviewEditForm({ setModal, movieTitle, review }) {
 			...formValues,
 			[e.target.name]: e.target.value,
 		});
-		console.log(formValues);
 	}
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		editReview({ id: review._id, movie: review.movie, ...formValues, author: review.author }, review._id)
+		const jwtToken = localStorage.getItem("JWT");
+		editReview({ id: review._id, movie: review.movie, ...formValues, author: review.author }, review._id, jwtToken)
 			.then((res) => {
 				setModal(false);
+				setFetch((c) => c + 1);
 			})
 			.catch((err) => {
 				console.error(err);
 			});
 	}
 
-	// console.log(users);
+	function handleDelete(e) {
+		e.preventDefault();
+		const jwtToken = localStorage.getItem("JWT");
+		deleteReview(review._id, jwtToken)
+			.then((res) => {
+				setModal(false);
+				setFetch((c) => c + 1);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	}
 
 	return (
 		<div
@@ -53,6 +65,7 @@ function ReviewEditForm({ setModal, movieTitle, review }) {
 					zIndex: 1,
 				}}>
 				<button onClick={() => setModal(false)}>X</button>
+				<button onClick={handleDelete}>Delete Review</button>
 				<form
 					action=""
 					style={{
@@ -92,6 +105,7 @@ function ReviewEditForm({ setModal, movieTitle, review }) {
 						onChange={handleChange}
 						style={inputStyle}
 					/>
+					<div>{`Author: ${review.author}`}</div>
 					<button type="submit">Submit</button>
 				</form>
 			</div>
