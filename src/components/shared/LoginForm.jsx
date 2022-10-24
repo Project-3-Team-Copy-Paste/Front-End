@@ -26,6 +26,7 @@ function LoginForm({ setModal, setToken }) {
 		signIn(formValues)
 			.then((res) => {
 				localStorage.setItem("JWT", res.token);
+				localStorage.setItem("username", res.username);
 				setToken(res.token);
 				setModal(false);
 			})

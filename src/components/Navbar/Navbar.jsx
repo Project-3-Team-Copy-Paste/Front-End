@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { NavLink } from "react-router-dom";
 import LoginForm from "../shared/LoginForm";
 import SearchBar from "./SearchBar";
@@ -6,6 +6,14 @@ import SearchBar from "./SearchBar";
 function Navbar() {
 	const [openModal, setOpenModal] = useState(false);
 	const [token, setToken] = useState(localStorage.getItem("JWT"));
+
+	const username = useMemo(() => {
+		if (token) {
+			return localStorage.getItem("username");
+		} else {
+			return "";
+		}
+	}, [token]);
 
 	return (
 		<div className="navBar">
@@ -19,13 +27,17 @@ function Navbar() {
 			</div>
 			<SearchBar />
 			{token ? (
-				<button
-					onClick={() => {
-						localStorage.removeItem("JWT");
-						setToken("");
-					}}>
-					Logout
-				</button>
+				<>
+					<span>{username}</span>
+					<button
+						onClick={() => {
+							localStorage.removeItem("JWT");
+							localStorage.removeItem("username");
+							setToken("");
+						}}>
+						Logout
+					</button>
+				</>
 			) : (
 				<>
 					<button onClick={() => setOpenModal(true)}>Login</button>

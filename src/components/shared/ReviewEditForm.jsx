@@ -9,18 +9,16 @@ const inputStyle = {
 function ReviewEditForm({ setModal, movieTitle, review, setFetch }) {
 	const [formValues, setFormValues] = useState({ title: review.title, body: review.body, rating: review.rating });
 
-	const jwtToken = localStorage.getItem("JWT");
-
 	function handleChange(e) {
 		setFormValues({
 			...formValues,
 			[e.target.name]: e.target.value,
 		});
-		console.log(formValues);
 	}
 
 	function handleSubmit(e) {
 		e.preventDefault();
+		const jwtToken = localStorage.getItem("JWT");
 		editReview({ id: review._id, movie: review.movie, ...formValues, author: review.author }, review._id, jwtToken)
 			.then((res) => {
 				setModal(false);
@@ -33,6 +31,7 @@ function ReviewEditForm({ setModal, movieTitle, review, setFetch }) {
 
 	function handleDelete(e) {
 		e.preventDefault();
+		const jwtToken = localStorage.getItem("JWT");
 		deleteReview(review._id, jwtToken)
 			.then((res) => {
 				setModal(false);
@@ -42,7 +41,6 @@ function ReviewEditForm({ setModal, movieTitle, review, setFetch }) {
 				console.error(err);
 			});
 	}
-	// console.log(users);
 
 	return (
 		<div
@@ -107,6 +105,7 @@ function ReviewEditForm({ setModal, movieTitle, review, setFetch }) {
 						onChange={handleChange}
 						style={inputStyle}
 					/>
+					<div>{`Author: ${review.author}`}</div>
 					<button type="submit">Submit</button>
 				</form>
 			</div>
