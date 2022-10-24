@@ -38,7 +38,7 @@ function SpecificMoviePage() {
 			return <div>No movie found!</div>;
 		}
 		return (
-			<div
+			<div className='backgroundDiv'
 				style={{
 					backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie["backdrop_path"]})`,
 					backgroundRepeat: "no-repeat",
