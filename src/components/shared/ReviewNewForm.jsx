@@ -12,39 +12,20 @@ const initialValues = {
 	rating: 5,
 };
 
-function ReviewForm({ setModal, movieTitle, movieID, setFetch }) {
-	const [users, setUsers] = useState(null);
+function ReviewForm({ setModal, setFetch, movieTitle, movieID, curUser }) {
 	const [formValues, setFormValues] = useState(initialValues);
-	const authorRef = useRef(null);
-
-	const jwtToken = localStorage.getItem("JWT");
-
-	useEffect(() => {
-		const abortController = new AbortController();
-		fetchAllUsers(abortController.signal)
-			.then((res) => setUsers(res))
-			.catch((err) => {
-				if (!abortController.signal.aborted) {
-					console.error(err);
-				}
-			});
-		return () => {
-			abortController.abort();
-		};
-	}, []);
 
 	function handleChange(e) {
 		setFormValues({
 			...formValues,
 			[e.target.name]: e.target.value,
 		});
-		console.log(formValues);
 	}
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		console.log(jwtToken);
-		postReview({ movie: `${movieID}`, ...formValues, author: authorRef.current.value }, jwtToken)
+		const jwtToken = localStorage.getItem("JWT");
+		postReview({ movie: `${movieID}`, ...formValues, author: curUser }, jwtToken)
 			.then((res) => {
 				setModal(false);
 				setFetch((c) => c + 1);
@@ -118,14 +99,7 @@ function ReviewForm({ setModal, movieTitle, movieID, setFetch }) {
 						onChange={handleChange}
 						style={inputStyle}
 					/>
-					<label htmlFor="author">Author</label>
-					<select name="user" id="author" required={true} ref={authorRef} style={inputStyle}>
-						{users && users.length > 0 ? (
-							users.map((user) => <option label={user.username} value={user._id} key={user._id} />)
-						) : (
-							<option disabled={true}>No users</option>
-						)}
-					</select>
+					<p>{`Author: ${curUser}`}</p>
 					<button type="submit">Submit</button>
 				</form>
 			</div>
