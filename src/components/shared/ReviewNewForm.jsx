@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { fetchAllUsers, postReview } from "../../functions/fetch";
 
 const inputStyle = {
@@ -10,12 +10,14 @@ const initialValues = {
 	title: "",
 	body: "",
 	rating: 5,
-	author: "",
 };
 
-function ReviewForm({ setModal, movieTitle, movieID }) {
+function ReviewForm({ setModal, movieTitle, movieID, setFetch }) {
 	const [users, setUsers] = useState(null);
 	const [formValues, setFormValues] = useState(initialValues);
+	const authorRef = useRef(null);
+
+	const jwtToken = localStorage.getItem("JWT");
 
 	useEffect(() => {
 		const abortController = new AbortController();
@@ -41,9 +43,11 @@ function ReviewForm({ setModal, movieTitle, movieID }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		postReview({ movie: movieID, ...formValues })
+		console.log(jwtToken);
+		postReview({ movie: `${movieID}`, ...formValues, author: authorRef.current.value }, jwtToken)
 			.then((res) => {
 				setModal(false);
+				setFetch((c) => c + 1);
 			})
 			.catch((err) => {
 				console.error(err);
@@ -115,13 +119,7 @@ function ReviewForm({ setModal, movieTitle, movieID }) {
 						style={inputStyle}
 					/>
 					<label htmlFor="author">Author</label>
-					<select
-						name="user"
-						id="author"
-						required={true}
-						value={formValues.author}
-						onChange={handleChange}
-						style={inputStyle}>
+					<select name="user" id="author" required={true} ref={authorRef} style={inputStyle}>
 						{users && users.length > 0 ? (
 							users.map((user) => <option label={user.username} value={user._id} key={user._id} />)
 						) : (

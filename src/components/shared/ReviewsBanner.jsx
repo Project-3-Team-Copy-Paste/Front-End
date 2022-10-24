@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Review from "./Review";
 import ReviewNewForm from "./ReviewNewForm";
 
-function ReviewsBanner({ reviews, movieTitle, movieID }) {
+function ReviewsBanner({ reviews, movieTitle, movieID, setFetch }) {
 	const [openModal, setOpenModal] = useState(false);
 
 	function renderReviews(reviews) {
@@ -11,7 +11,9 @@ function ReviewsBanner({ reviews, movieTitle, movieID }) {
 		} else if (reviews.length === 0) {
 			return <p>We don't have any reviews on this movie yet. Do you wanna be first?</p>;
 		} else {
-			return reviews.map((review, index) => <Review key={index} review={review} movieTitle={movieTitle} />);
+			return reviews.map((review, index) => (
+				<Review key={index} review={review} movieTitle={movieTitle} setFetch={setFetch} />
+			));
 		}
 	}
 
@@ -21,7 +23,12 @@ function ReviewsBanner({ reviews, movieTitle, movieID }) {
 				<>
 					<button onClick={() => setOpenModal(true)}>Add review</button>
 					{openModal ? (
-						<ReviewNewForm setModal={setOpenModal} movieID={movieID} movieTitle={movieTitle} />
+						<ReviewNewForm
+							setModal={setOpenModal}
+							movieID={movieID}
+							movieTitle={movieTitle}
+							setFetch={setFetch}
+						/>
 					) : null}
 				</>
 			);

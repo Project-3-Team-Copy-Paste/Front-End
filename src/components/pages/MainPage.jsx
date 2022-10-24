@@ -6,6 +6,8 @@ import { fetchAllReviews, fetchTrendingMovies } from "../../functions/fetch";
 function MainPage() {
 	const [movies, setMovies] = useState([]);
 	const [reviews, setReviews] = useState([]);
+	const [fetch, setFetch] = useState(0);
+
 	useEffect(() => {
 		const abortController = new AbortController();
 		Promise.all([fetchTrendingMovies(abortController.signal), fetchAllReviews(abortController.signal)])
@@ -21,13 +23,13 @@ function MainPage() {
 		return () => {
 			abortController.abort();
 		};
-	}, []);
+	}, [fetch]);
 
 	function render() {
 		return (
 			<div className="bannerContainer">
 				<MoviesBanner movies={movies} />
-				<ReviewsBanner reviews={reviews} />
+				<ReviewsBanner reviews={reviews} setFetch={setFetch} />
 				{/* <ReviewForm /> */}
 			</div>
 		);

@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import { editReview } from "../../functions/fetch";
+import React, { useMemo, useState } from "react";
+import { deleteReview, editReview } from "../../functions/fetch";
 
 const inputStyle = {
 	color: "black",
 	borderRadius: "3px",
 };
 
-function ReviewEditForm({ setModal, movieTitle, review }) {
+function ReviewEditForm({ setModal, movieTitle, review, setFetch }) {
 	const [formValues, setFormValues] = useState({ title: review.title, body: review.body, rating: review.rating });
+
+	const jwtToken = localStorage.getItem("JWT");
 
 	function handleChange(e) {
 		setFormValues({
@@ -19,15 +21,27 @@ function ReviewEditForm({ setModal, movieTitle, review }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		editReview({ id: review._id, movie: review.movie, ...formValues, author: review.author }, review._id)
+		editReview({ id: review._id, movie: review.movie, ...formValues, author: review.author }, review._id, jwtToken)
 			.then((res) => {
 				setModal(false);
+				setFetch((c) => c + 1);
 			})
 			.catch((err) => {
 				console.error(err);
 			});
 	}
 
+	function handleDelete(e) {
+		e.preventDefault();
+		deleteReview(review._id, jwtToken)
+			.then((res) => {
+				setModal(false);
+				setFetch((c) => c + 1);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	}
 	// console.log(users);
 
 	return (
@@ -53,6 +67,7 @@ function ReviewEditForm({ setModal, movieTitle, review }) {
 					zIndex: 1,
 				}}>
 				<button onClick={() => setModal(false)}>X</button>
+				<button onClick={handleDelete}>Delete Review</button>
 				<form
 					action=""
 					style={{
