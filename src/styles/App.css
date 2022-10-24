@@ -2,15 +2,15 @@ html,
 body,
 #root,
 .app {
-	padding: 0;
-	margin: 0;
-	width: 100%;
-	height: 100%;
+    padding: 0;
+    margin: 0;
+    width: 100%;
 }
 body {
-	background-image: linear-gradient(to bottom right, #141d26, #243447, #c51f5d);
-	color: #fff;
-	background-repeat: no-repeat;
+    background-image: linear-gradient(to bottom right, #141d26, #243447, #c51f5d);
+    color: #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 a {
 	color: #c51f5d;
@@ -22,32 +22,44 @@ a:hover {
 	transition: 500ms;
 }
 .app {
-	display: grid;
-	grid-template-columns: minmax(300px, 1fr);
-	grid-template-rows: 50px minmax(300px, 1fr) 50px;
-	/* padding-right: 50px; */
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr);
+    grid-template-rows: 50px minmax(300px, 1fr) 50px;
 }
 .navBar {
-	display: flex;
-	grid-column: 1;
-	grid-row: 1 / span 1;
-	/* justify-content: space-evenly; */
-	align-items: center;
+    display: flex;
+    background-color: #141d2691;
+    grid-column: 1;
+    grid-row: 1 / span 1;
+    justify-content: space-between;
+    align-items: center;
 }
-.navBar span {
-	margin: 0 5px;
+.navLinks{
+    display: flex;
+    gap: 15px;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 1rem;
 }
 form {
-	display: flex;
-	align-self: flex-end;
+    padding-right: 1rem;
 }
 .mainPage {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: space-evenly;
-	grid-column: 1;
-	grid-row: 2 / span 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    grid-column: 1;
+    grid-row: 2 /span 1;
+
+    /* 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-rows: minmax(250px, auto);
+    gap: 1rem;
+    justify-items: center;
+    align-items: center; 
+    */
 }
 .bannerContainer {
 	/* display: flex; */
@@ -61,39 +73,83 @@ form {
 	align-items: center;
 }
 .footer {
-	display: flex;
-	grid-column: 1;
-	grid-row: 3 / span 1;
-	color: white;
-	/* height: "2rem"; */
-	/* width: 1vw; */
-	/* gap: "2rem"; */
-	align-items: center;
-	justify-content: space-around;
+    display: grid;
+    background-color: #24344778;
+    grid-template-columns: repeat(2, 1fr);         
+    width: 100vw;
+    grid-column: 1;
+    grid-row: 3 / span 1;
+    color: white;
+    align-items: center;
+    justify-content: center;
 }
-.footerItem {
-	display: flex;
-	justify-content: flex-end;
-	color: white;
+.footerChild {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    padding-left: .25rem;
 }
 input[type="search"],
 textarea {
-	background-color: inherit;
-	color: white;
-	text-align: center;
-	border-radius: 10%;
+    background-color: #243447;
+    color: white;
+    text-align: center;
+    border-radius: 10%;
 }
 ::placeholder {
 	font-family: sans-serif;
 }
-button[type="submit"] {
-	background-color: #141d26;
-	font-family: sans-serif;
-	color: white;
-	box-shadow: 2px 1px #c51f5d;
+button[type='submit'] {
+    background-color: #141d26;
+    font-family: sans-serif;
+    color: white;
+    border-radius: 6px;
+    box-shadow: 3px 1.5px #c51f5d;
 }
 button:hover {
-	color: red;
-	box-shadow: 1px 0.5px;
-	transition-duration: 1s;
+    color: #c51f5d;
+    box-shadow: 1px .5px;
+    transition-duration: 500ms;
 }
+.movieItemList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-rows: minmax(250px, auto);
+    gap: 1rem;
+    justify-items: center;
+    align-items: center;
+}
+.movieItem {
+    width: 200px;
+    height: 300px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.movieItemPoster {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    z-index: -1;
+}
+.movieItemTitle, .hidden {
+    visibility: hidden;
+    width: 100%;
+    z-index: 1;
+    background-color: rgba(64, 64, 64, .5);
+    text-align: center;
+}
+.movieItem:hover .movieItemTitle{
+    visibility: visible    
+}
+.movieItem:hover .movieItemPoster{
+    transition: .5s;
+    opacity: .5;
+}
+/* .backgroundImage {
+    z-index: -1;
+} */
