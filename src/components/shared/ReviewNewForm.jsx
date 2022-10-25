@@ -25,7 +25,7 @@ function ReviewForm({ setModal, setFetch, movieTitle, movieID, curUser }) {
 	function handleSubmit(e) {
 		e.preventDefault();
 		const jwtToken = localStorage.getItem("JWT");
-		postReview({ movie: `${movieID}`, ...formValues, author: curUser }, jwtToken)
+		postReview({ movie: `${movieID}`, ...formValues, author: curUser, movie_title: movieTitle }, jwtToken)
 			.then((res) => {
 				setModal(false);
 				setFetch((c) => c + 1);
