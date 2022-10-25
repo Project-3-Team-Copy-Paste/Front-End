@@ -74,7 +74,7 @@ function ReviewEditForm({ setModal, movieTitle, review, setFetch }) {
 						value={formValues.rating}
 						onChange={handleChange}
 					/>
-					<div>{`Author: ${review.author}`}</div>
+					<div>{`Author: ${review.author.username}`}</div>
 					<button type="submit">Submit</button>
 				</form>
 			</div>
