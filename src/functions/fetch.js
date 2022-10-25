@@ -1,11 +1,13 @@
-import axios from "axios";
+import axios from 'axios';
 const KEY = process.env.REACT_APP_MOVIE_KEY;
 const SERVER =
-	process.env.NODE_ENV === "development" ? "http://localhost:8000" : "https://reelz-backend.herokuapp.com/";
+	process.env.NODE_ENV === 'development'
+		? 'http://localhost:8000'
+		: 'https://reelz-backend.herokuapp.com/';
 
 const searchObject = {
-	api: "https://api.themoviedb.org/3",
-	endpoints: ["/movie/popular?", "/movie/", "/search/movie?"],
+	api: 'https://api.themoviedb.org/3',
+	endpoints: ['/movie/popular?', '/movie/', '/search/movie?'],
 };
 
 export async function fetchTrendingMovies(signal) {
@@ -16,7 +18,7 @@ export async function fetchTrendingMovies(signal) {
 		);
 		return response.data;
 	} catch (err) {
-		if (err.name !== "CanceledError") {
+		if (err.name !== 'CanceledError') {
 			throw err;
 		}
 		return { results: [] };
@@ -33,7 +35,7 @@ export async function fetchMovieById(id, signal) {
 		);
 		return response.data;
 	} catch (err) {
-		if (err.name !== "CanceledError") {
+		if (err.name !== 'CanceledError') {
 			throw err;
 		}
 		return null;
@@ -48,7 +50,7 @@ export async function fetchMovieByName(name, signal) {
 		);
 		return response.data;
 	} catch (err) {
-		if (err.name !== "CanceledError") {
+		if (err.name !== 'CanceledError') {
 			throw err;
 		}
 		return null;
@@ -67,7 +69,7 @@ export async function fetchAllReviews(signal) {
 		const response = await axios.get(url.href, { signal });
 		return response.data;
 	} catch (err) {
-		if (err.name !== "CanceledError") {
+		if (err.name !== 'CanceledError') {
 			throw err;
 		}
 		return [];
@@ -86,7 +88,7 @@ export async function fetchReviewsByMovieId(movieId, signal) {
 		const response = await axios.get(url.href, { signal });
 		return response.data;
 	} catch (err) {
-		if (err.name !== "CanceledError") {
+		if (err.name !== 'CanceledError') {
 			throw err;
 		}
 		return [];
@@ -100,7 +102,9 @@ export async function postReview(reviewBody, jwtToken) {
 	};
 	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
 	try {
-		const response = await axios.post(url.href, reviewBody, { headers: { Authorization: `bearer ${jwtToken}` } });
+		const response = await axios.post(url.href, reviewBody, {
+			headers: { Authorization: `bearer ${jwtToken}` },
+		});
 		return response.data;
 	} catch (err) {
 		throw err;
@@ -114,7 +118,9 @@ export async function editReview(reviewBody, reviewId, jwtToken) {
 	};
 	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
 	try {
-		const response = await axios.put(url.href, reviewBody, { headers: { Authorization: `bearer ${jwtToken}` } });
+		const response = await axios.put(url.href, reviewBody, {
+			headers: { Authorization: `bearer ${jwtToken}` },
+		});
 		return response.data;
 	} catch (err) {
 		throw err;
@@ -129,7 +135,9 @@ export async function deleteReview(reviewId, jwtToken) {
 	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
 	console.log(url);
 	try {
-		const response = await axios.delete(url.href, { headers: { Authorization: `bearer ${jwtToken}` } });
+		const response = await axios.delete(url.href, {
+			headers: { Authorization: `bearer ${jwtToken}` },
+		});
 		return response.data;
 	} catch (err) {
 		throw err;
@@ -149,7 +157,7 @@ export async function fetchAllUsers(signal) {
 		return response.data;
 	} catch (err) {
 		// console.log(err);
-		if (err.name !== "CanceledError") {
+		if (err.name !== 'CanceledError') {
 			throw err;
 		}
 		return [];
@@ -181,5 +189,56 @@ export async function signIn(loginInfo) {
 		return response.data;
 	} catch (err) {
 		throw err;
+	}
+}
+
+export async function fetchMoviesRelatedToUserById(userId, signal) {
+	const searchObject = {
+		api: SERVER,
+		endpoint: `user/movies/${userId}`,
+	};
+	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
+	try {
+		const response = await axios.get(url.href, { signal });
+		return response.data;
+	} catch (err) {
+		if (err.name !== 'CanceledError') {
+			throw err;
+		}
+		return [];
+	}
+}
+
+export async function updateMovieInWatchList(userId, movieId, data, signal) {
+	const searchObject = {
+		api: SERVER,
+		endpoint: `/users/${userId}/movie/${movieId}`,
+	};
+	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
+	try {
+		const response = await axios.patch(url.href, data, { signal });
+		return response.data;
+	} catch (err) {
+		if (err.name !== 'CanceledError') {
+			throw err;
+		}
+		return [];
+	}
+}
+
+export async function fetchReviewsRelatedToUserById(userId, signal) {
+	const searchObject = {
+		api: SERVER,
+		endpoint: `user/reviews/${userId}`,
+	};
+	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
+	try {
+		const response = await axios.get(url.href, { signal });
+		return response.data;
+	} catch (err) {
+		if (err.name !== 'CanceledError') {
+			throw err;
+		}
+		return [];
 	}
 }
