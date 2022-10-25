@@ -13,7 +13,7 @@ function ReviewsBanner({ reviews, movieTitle, movieID, setFetch }) {
 		if (reviews === null) {
 			return <p>Loading...</p>;
 		} else if (reviews.length === 0) {
-			return <p>We don't have any reviews on this movie yet. Do you wanna be first?</p>;
+			return <p>Be the first to review this movie!</p>;
 		} else {
 			const output =
 				index !== -1
@@ -35,7 +35,7 @@ function ReviewsBanner({ reviews, movieTitle, movieID, setFetch }) {
 		if (movieTitle && movieID) {
 			return (
 				<>
-					{index === -1 ? <button onClick={() => setOpenModal(true)}>Add review</button> : null}
+					{index === -1 ? <button onClick={() => setOpenModal(true)} className="addReviewBtn">Add review</button> : null}
 					{openModal ? (
 						curUser ? (
 							<ReviewNewForm
@@ -58,8 +58,8 @@ function ReviewsBanner({ reviews, movieTitle, movieID, setFetch }) {
 	return (
 		<div className="bannerContainer reviewBannerContainer">
 			<h2>Reviews</h2>
-			{addForm(movieTitle, movieID, curUser)}
 			<div className="banner reviewBanner">{renderReviews(reviews, curUser)}</div>
+			{addForm(movieTitle, movieID, curUser)}
 		</div>
 	);
 }

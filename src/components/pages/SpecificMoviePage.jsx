@@ -126,27 +126,29 @@ function SpecificMoviePage() {
 			return <div>No movie found!</div>;
 		}
 		return (
-			<div
-				className='backgroundDiv'
-				style={{
-					backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie['backdrop_path']})`,
-					backgroundRepeat: 'no-repeat',
-					backgroundSize: '100% auto',
-				}}>
+
+			<div className='specificMovieContainer'>
 				{!watched ? renderWatched(movie) : null}
 				{openModal ? <LoginNotification setModal={setOpenModal} /> : null}
 				{userId && jwtToken ? renderFinished() : null}
-				<img
+				<img className="background"
+					src={`https://image.tmdb.org/t/p/original/${movie["backdrop_path"]}`}
+					alt="Backdrop Poster"
+				/>	
+				<img className="smPoster"
 					src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
 					alt='Poster'
-					style={{ height: '25rem' }}
 				/>
-				<h2>{movie.title}</h2>
-				<h4>{movie.release_date}</h4>
-				<div>
+				<div className="specificMovieItem">
+					<h2 className="smTitle">{movie.title}</h2>
+					<div>Description:</div>
+					<p className="smOverview">{movie.overview}</p>
+					<div className="smGenres">Genre(s):
 					{movie.genres.map((genre) => {
-						return <span key={genre.id}>{genre.name}</span>;
+						return <span className="smGenre" key={genre.id}>{genre.name}</span>;
 					})}
+					</div>
+					<h4 className="smReleaseDate">Release Date: {movie.release_date}</h4>
 				</div>
 				<p>{movie.overview}</p>
 				<ReviewsBanner
@@ -159,7 +161,7 @@ function SpecificMoviePage() {
 		);
 	}
 
-	return <div>{renderData()}</div>;
+	return <>{renderData()}</>;
 }
 
 export default SpecificMoviePage;
