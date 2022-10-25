@@ -230,6 +230,25 @@ export async function updateMovieInWatchList(userId, movieId, data, jwtToken) {
 	}
 }
 
+export async function deleteMovieFromWatchList(userId, movieId, jwtToken) {
+	const searchObject = {
+		api: SERVER,
+		endpoint: `/users/${userId}/movie/${movieId}`,
+	};
+	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
+	try {
+		const response = await axios.delete(url.href, {
+			headers: { Authorization: `bearer ${jwtToken}` },
+		});
+		return response.data;
+	} catch (err) {
+		if (err.name !== 'CanceledError') {
+			throw err;
+		}
+		return [];
+	}
+}
+
 export async function fetchReviewsRelatedToUserById(userId, jwtToken, signal) {
 	const searchObject = {
 		api: SERVER,
