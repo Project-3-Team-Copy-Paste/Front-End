@@ -104,6 +104,7 @@ button:hover {
     display: flex;
     flex-flow: column wrap;
 }
+
 .movieItemList {
     display: grid;
     grid-column: 1;
