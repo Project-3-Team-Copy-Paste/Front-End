@@ -240,7 +240,7 @@ export async function updateMovieInWatchList(
 export async function fetchReviewsRelatedToUserById(userId, jwtToken, signal) {
 	const searchObject = {
 		api: SERVER,
-		endpoint: `user/reviews/${userId}`,
+		endpoint: `users/reviews/${userId}`,
 	};
 	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
 	try {
