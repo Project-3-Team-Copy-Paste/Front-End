@@ -23,11 +23,11 @@ function LoginForm({ setModal, setToken }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		console.log(formValues);
 		signIn(formValues)
 			.then((res) => {
 				localStorage.setItem("JWT", res.token);
 				localStorage.setItem("username", res.username);
+				localStorage.setItem("userId", res._id);
 				setToken(res.token);
 				setModal(false);
 			})
