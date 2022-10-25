@@ -27,14 +27,14 @@ function MainPage() {
 
 	function render() {
 		return (
-			<div className="bannerContainer">
+			<div  className="mainPage">
 				<MoviesBanner movies={movies} />
 				<ReviewsBanner reviews={reviews} setFetch={setFetch} />
 			</div>
 		);
 	}
 
-	return <div className="mainPage">{render()}</div>;
+	return <>{render()}</>;
 }
 
 export default MainPage;
