@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import LoginNotification from "./LoginNotification";
 import Review from "./Review";
 import ReviewNewForm from "./ReviewNewForm";
