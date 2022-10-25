@@ -28,7 +28,6 @@ export async function fetchTrendingMovies(signal) {
 export async function fetchMovieById(id, signal) {
 	try {
 		const url = `${searchObject.api}${searchObject.endpoints[1]}${id}?api_key=${KEY}&language=en-US`;
-		console.log(url);
 		const response = await axios.get(
 			`${searchObject.api}${searchObject.endpoints[1]}${id}?api_key=${KEY}&language=en-US`,
 			{ signal }
@@ -192,14 +191,17 @@ export async function signIn(loginInfo) {
 	}
 }
 
-export async function fetchMoviesRelatedToUserById(userId, signal) {
+export async function fetchMoviesRelatedToUserById(userId, jwtToken, signal) {
 	const searchObject = {
 		api: SERVER,
-		endpoint: `user/movies/${userId}`,
+		endpoint: `users/movies/${userId}`,
 	};
 	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
 	try {
-		const response = await axios.get(url.href, { signal });
+		const response = await axios.get(url.href, {
+			signal,
+			headers: { Authorization: `bearer ${jwtToken}` },
+		});
 		return response.data;
 	} catch (err) {
 		if (err.name !== 'CanceledError') {
@@ -209,14 +211,23 @@ export async function fetchMoviesRelatedToUserById(userId, signal) {
 	}
 }
 
-export async function updateMovieInWatchList(userId, movieId, data, signal) {
+export async function updateMovieInWatchList(
+	userId,
+	movieId,
+	data,
+	jwtToken,
+	signal
+) {
 	const searchObject = {
 		api: SERVER,
 		endpoint: `/users/${userId}/movie/${movieId}`,
 	};
 	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
 	try {
-		const response = await axios.patch(url.href, data, { signal });
+		const response = await axios.patch(url.href, data, {
+			signal,
+			headers: { Authorization: `bearer ${jwtToken}` },
+		});
 		return response.data;
 	} catch (err) {
 		if (err.name !== 'CanceledError') {
@@ -226,14 +237,17 @@ export async function updateMovieInWatchList(userId, movieId, data, signal) {
 	}
 }
 
-export async function fetchReviewsRelatedToUserById(userId, signal) {
+export async function fetchReviewsRelatedToUserById(userId, jwtToken, signal) {
 	const searchObject = {
 		api: SERVER,
 		endpoint: `user/reviews/${userId}`,
 	};
 	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
 	try {
-		const response = await axios.get(url.href, { signal });
+		const response = await axios.get(url.href, {
+			signal,
+			headers: { Authorization: `bearer ${jwtToken}` },
+		});
 		return response.data;
 	} catch (err) {
 		if (err.name !== 'CanceledError') {
