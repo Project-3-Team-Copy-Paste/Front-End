@@ -199,22 +199,25 @@ button:hover {
 }
 
 @media (max-width: 600px) {
-	h2 {
-		text-align: center;
-	}
-	.specificMovieContainer {
-		display: flex;
-		flex-flow: column wrap;
-		height: 100%;
-		width: 100vw;
-	}
-	.smPoster {
-		max-width: 150px;
-		max-height: 200px;
-	}
-	.specificMovieItem {
-		background-color: none;
-	}
-	/* .specificMovieContainer .reviewBannerContainer {
+    h2{
+        text-align: center;
+    }
+    .navBar{
+        flex-direction: column;
+    }
+    .specificMovieContainer {
+        display: flex;
+        flex-flow: column wrap;
+        height: 100%;
+        width: 100vw;
+    }
+    .smPoster {
+        max-width: 150px;
+        max-height: 200px;
+    }
+    .specificMovieItem {
+        background-color: none;
+    }
+    /* .specificMovieContainer .reviewBannerContainer {
     } */
 }
