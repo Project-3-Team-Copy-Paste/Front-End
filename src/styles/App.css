@@ -5,7 +5,8 @@ body,
     padding: 0;
     margin: 0;
     width: 100%;
-    height: 100%; 
+    height: 100%;
+    font-family: 'El Messiri', sans-serif;
     color: #fff;
 }
 body {
@@ -14,6 +15,7 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
+    /* font-family: 'El Messiri', sans-serif; */
 }
 .app {
 	display: grid;
@@ -58,7 +60,7 @@ button {
 	font-family: sans-serif;
 	color: white;
 	border-radius: 6px;
-	box-shadow: 3px 1.5px #c51f5d;
+	box-shadow: 2px 1px #c51f5d;
 }
 button:hover {
 	color: #c51f5d;
@@ -201,15 +203,17 @@ button:hover {
 }
 
 .screenDimmer {
-position: fixed;
-top: 0%;
-left: 0%;
-width: 100%;
-height: 100%;
-background-color: hsla(0, 0%, 0%, 0.75);
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: hsla(0, 0%, 0%, 0.75);
 }
 .modal {
     position: fixed;
+    display: flex;
+
     background: linear-gradient(to bottom right, #141d26, #243447, #c51f5d);
     background-attachment: fixed;
     top: 50%;
@@ -220,6 +224,28 @@ background-color: hsla(0, 0%, 0%, 0.75);
     border: 3px solid #1d2939;
     z-index: 1;
 }
+.editReviewModal {
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start
+}
+.modalNav {
+    display: flex;
+    height: auto;
+    width: inherit;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding-right: 3px;
+}
+.editReviewForm{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
 
 @media (max-width: 600px) {
     h2{
