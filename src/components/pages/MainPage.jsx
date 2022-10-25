@@ -30,7 +30,6 @@ function MainPage() {
 			<div className="bannerContainer">
 				<MoviesBanner movies={movies} />
 				<ReviewsBanner reviews={reviews} setFetch={setFetch} />
-				{/* <ReviewForm /> */}
 			</div>
 		);
 	}

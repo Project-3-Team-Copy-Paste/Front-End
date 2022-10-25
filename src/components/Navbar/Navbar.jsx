@@ -3,15 +3,12 @@ import { NavLink } from "react-router-dom";
 import LoginForm from "../shared/LoginForm";
 import SearchBar from "./SearchBar";
 
-function Navbar() {
+function Navbar({ token, setToken }) {
 	const [openModal, setOpenModal] = useState(false);
-	const [token, setToken] = useState(localStorage.getItem("JWT"));
 
 	const username = useMemo(() => {
 		if (token) {
 			return localStorage.getItem("username");
-		} else {
-			return "";
 		}
 	}, [token]);
 
@@ -33,6 +30,7 @@ function Navbar() {
 						onClick={() => {
 							localStorage.removeItem("JWT");
 							localStorage.removeItem("username");
+							localStorage.removeItem("userId");
 							setToken("");
 						}}>
 						Logout
