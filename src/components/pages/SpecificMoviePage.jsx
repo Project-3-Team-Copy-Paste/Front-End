@@ -122,16 +122,13 @@ function SpecificMoviePage() {
 					checked={finished}
 					onChange={(e) => {
 						if (userId && jwtToken) {
+							setFinished(e.target.checked);
 							updateMovieInWatchList(
 								userId,
 								movieID,
 								{ finished: e.target.checked },
 								jwtToken
-							)
-								.then((res) => {
-									setFinished(e.target.checked);
-								})
-								.catch((err) => console.error(err));
+							).catch((err) => console.error(err));
 						}
 					}}
 				/>
