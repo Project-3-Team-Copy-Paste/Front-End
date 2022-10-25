@@ -132,7 +132,6 @@ export async function deleteReview(reviewId, jwtToken) {
 		endpoint: `reviews/${reviewId}`,
 	};
 	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
-	console.log(url);
 	try {
 		const response = await axios.delete(url.href, {
 			headers: { Authorization: `bearer ${jwtToken}` },

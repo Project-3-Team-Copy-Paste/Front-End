@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { fetchAllUsers, postReview } from "../../functions/fetch";
+import React, { useState } from "react";
+import { postReview } from "../../functions/fetch";
 
 const inputStyle = {
 	color: "black",

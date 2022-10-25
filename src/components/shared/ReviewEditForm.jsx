@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { deleteReview, editReview } from "../../functions/fetch";
 
 const inputStyle = {
