@@ -4,14 +4,15 @@ import { fetchReviewsRelatedToUserById } from '../../functions/fetch';
 
 function JournalPage() {
 	const [data, setData] = useState([]);
-	const userId = useMemo(() => localStorage.getItem('userId'), []);
+	const userId = localStorage.getItem('userId');
+	const jwtToken = localStorage.getItem('JWT');
 
 	useEffect(() => {
 		const abortController = new AbortController();
 		if (userId) {
-			fetchReviewsRelatedToUserById(userId, abortController.signal)
+			fetchReviewsRelatedToUserById(userId, jwtToken, abortController.signal)
 				.then((res) => {
-					setData(res.results);
+					setData(res);
 				})
 				.catch((err) => {
 					console.error(err);

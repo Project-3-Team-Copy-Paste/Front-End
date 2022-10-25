@@ -24,7 +24,7 @@ function WatchListPage() {
 	}, []);
 
 	function renderData() {
-		if (data === 0) {
+		if (data.length === 0) {
 			return <p>Loading...</p>;
 		} else {
 			return data.map((movie) => {
