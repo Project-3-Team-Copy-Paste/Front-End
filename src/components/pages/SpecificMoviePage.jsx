@@ -9,6 +9,7 @@ import {
 } from '../../functions/fetch';
 import ReviewsBanner from '../shared/ReviewsBanner';
 import LoginNotification from '../shared/LoginNotification';
+import MovieDescription from '../shared/MovieDescription';
 
 function SpecificMoviePage() {
 	const [data, setData] = useState(null);
@@ -151,28 +152,7 @@ function SpecificMoviePage() {
 					src={`https://image.tmdb.org/t/p/original/${movie['backdrop_path']}`}
 					alt='Backdrop Poster'
 				/>
-				<img
-					className='smPoster'
-					src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-					alt='Poster'
-				/>
-				<div className='specificMovieItem'>
-					<h2 className='smTitle'>{movie.title}</h2>
-					<div>Description:</div>
-					<p className='smOverview'>{movie.overview}</p>
-					<div className='smGenres'>
-						Genre(s):
-						{movie.genres.map((genre) => {
-							return (
-								<span className='smGenre' key={genre.id}>
-									{genre.name}
-								</span>
-							);
-						})}
-					</div>
-					<h4 className='smReleaseDate'>Release Date: {movie.release_date}</h4>
-				</div>
-				<p>{movie.overview}</p>
+				<MovieDescription movie={movie} />
 				<ReviewsBanner
 					reviews={reviews}
 					movieTitle={movie.title}

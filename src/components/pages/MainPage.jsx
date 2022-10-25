@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import ReviewsBanner from "../shared/ReviewsBanner";
-import MoviesBanner from "../shared/MoviesBanner";
-import { fetchAllReviews, fetchTrendingMovies } from "../../functions/fetch";
+import React, { useEffect, useState } from 'react';
+import ReviewsBanner from '../shared/ReviewsBanner';
+import MoviesBanner from '../shared/MoviesBanner';
+import MovieDescription from '../shared/MovieDescription';
+import { fetchAllReviews, fetchTrendingMovies } from '../../functions/fetch';
 
 function MainPage() {
 	const [movies, setMovies] = useState([]);
@@ -10,7 +11,10 @@ function MainPage() {
 
 	useEffect(() => {
 		const abortController = new AbortController();
-		Promise.all([fetchTrendingMovies(abortController.signal), fetchAllReviews(abortController.signal)])
+		Promise.all([
+			fetchTrendingMovies(abortController.signal),
+			fetchAllReviews(abortController.signal),
+		])
 			.then(([{ results }, reviews]) => {
 				setMovies(results.length > 3 ? results.slice(0, 3) : results);
 				setReviews(reviews.length > 3 ? reviews.slice(0, 3) : reviews);
@@ -27,7 +31,8 @@ function MainPage() {
 
 	function render() {
 		return (
-			<div  className="mainPage">
+			<div className='mainPage'>
+				<MovieDescription movie={movies[0]} />
 				<MoviesBanner movies={movies} />
 				<ReviewsBanner reviews={reviews} setFetch={setFetch} />
 			</div>
