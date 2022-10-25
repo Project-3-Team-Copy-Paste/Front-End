@@ -33,37 +33,11 @@ function RegisterForm({ setModal }) {
 	}
 
 	return (
-		<div
-			style={{
-				position: "absolute",
-				top: "0%",
-				left: "0%",
-				width: "100vw",
-				height: "100vh",
-				backgroundColor: "hsla(0, 0%, 0%, 0.25)",
-			}}>
-			<div
-				style={{
-					position: "absolute",
-					background: "white",
-					top: "50%",
-					left: "50%",
-					translate: "-50% -50%",
-					minWidth: "25rem",
-					minHeight: "40rem",
-					border: "5px solid black",
-					zIndex: 1,
-				}}>
+		<div className="screenDimmer">
+			<div className="modal registerForm">
 				<button onClick={() => setModal(false)}>X</button>
 				<form
 					action=""
-					style={{
-						margin: "2rem",
-						display: "flex",
-						flexDirection: "column",
-						gap: "1rem",
-						color: "black",
-					}}
 					onSubmit={handleSubmit}>
 					<label htmlFor="username">Username</label>
 					<input
@@ -73,7 +47,6 @@ function RegisterForm({ setModal }) {
 						required={true}
 						value={formValues.username}
 						onChange={handleChange}
-						style={inputStyle}
 					/>
 					<label htmlFor="password">Password</label>
 					<input
@@ -83,7 +56,6 @@ function RegisterForm({ setModal }) {
 						required={true}
 						value={formValues.password}
 						onChange={handleChange}
-						style={inputStyle}
 					/>
 					<label htmlFor="email">Email</label>
 					<input
@@ -93,7 +65,6 @@ function RegisterForm({ setModal }) {
 						required={true}
 						value={formValues.email}
 						onChange={handleChange}
-						style={inputStyle}
 					/>
 					<button type="submit">Submit</button>
 				</form>

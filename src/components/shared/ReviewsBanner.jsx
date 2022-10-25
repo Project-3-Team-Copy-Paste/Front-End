@@ -13,7 +13,7 @@ function ReviewsBanner({ reviews, movieTitle, movieID, setFetch }) {
 		if (reviews === null) {
 			return <p>Loading...</p>;
 		} else if (reviews.length === 0) {
-			return <p>Be the first to review this movie!</p>;
+			return <p>Be the first to leave a review!</p>;
 		} else {
 			const output =
 				index !== -1

@@ -33,9 +33,9 @@ function Navbar({ token, setToken }) {
 			</div>
 			<SearchBar />
 			{token ? (
-				<>
-					<span>{username}</span>
-					<button
+				<div className='userBrick'>
+					<div className='username'>{username}</div>
+					<button className='logBtn logout'
 						onClick={() => {
 							localStorage.removeItem("JWT");
 							localStorage.removeItem("username");
@@ -44,14 +44,14 @@ function Navbar({ token, setToken }) {
 						}}>
 						Logout
 					</button>
-				</>
+				</div>
 			) : (
-				<>
+				<div className='userBrick'>
 					<button onClick={() => setOpenLogin(true)}>Login</button>
 					<button onClick={() => setOpenRegister(true)}>Register</button>
 					{openLogin ? <LoginForm setModal={setOpenLogin} setToken={setToken} /> : null}
 					{openRegister ? <RegisterForm setModal={setOpenRegister} /> : null}
-				</>
+				</div>
 			)}
 		</div>
 	);
