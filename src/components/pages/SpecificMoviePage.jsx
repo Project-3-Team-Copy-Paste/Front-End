@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 import {
 	fetchMovieById,
 	fetchReviewsByMovieId,
 	fetchMoviesRelatedToUserById,
 	updateMovieInWatchList,
-} from "../../functions/fetch";
-import ReviewsBanner from "../shared/ReviewsBanner";
-import LoginNotification from "../shared/LoginNotification";
+	deleteMovieFromWatchList,
+} from '../../functions/fetch';
+import ReviewsBanner from '../shared/ReviewsBanner';
+import LoginNotification from '../shared/LoginNotification';
 
 function SpecificMoviePage() {
 	const [data, setData] = useState(null);
@@ -15,10 +16,10 @@ function SpecificMoviePage() {
 	const [fetch, setFetch] = useState(0);
 	const [finished, setFinished] = useState(false);
 	const [openModal, setOpenModal] = useState(false);
-	const [watched, setWatched] = useState(false);
+	const [watched, setWatched] = useState(null);
 	const { movieID } = useParams();
-	const userId = localStorage.getItem("userId");
-	const jwtToken = localStorage.getItem("JWT");
+	const userId = localStorage.getItem('userId');
+	const jwtToken = localStorage.getItem('JWT');
 
 	useEffect(() => {
 		const abortController = new AbortController();
@@ -30,11 +31,17 @@ function SpecificMoviePage() {
 				setData(movie);
 				setReviews(reviews);
 				if (userId && jwtToken) {
-					fetchMoviesRelatedToUserById(userId, jwtToken, abortController.signal).then((watchlist) => {
+					fetchMoviesRelatedToUserById(
+						userId,
+						jwtToken,
+						abortController.signal
+					).then((watchlist) => {
 						const foundMovie = watchlist.find((movie) => movie.id === movieID);
 						if (foundMovie !== undefined) {
 							setWatched(true);
 							setFinished(foundMovie.finished);
+						} else {
+							setWatched(false);
 						}
 					});
 				}
@@ -55,56 +62,80 @@ function SpecificMoviePage() {
 	}
 
 	function renderWatched(movie) {
-		return (
-			<button
-				type="button"
-				onClick={() => {
-					if (userId && jwtToken) {
-						updateMovieInWatchList(
-							userId,
-							movie.id,
-							{
-								id: movie.id,
-								poster_path: movie.poster_path,
-								title: movie.title,
-								finished: false,
-							},
-							jwtToken
-						)
-							.then(() => {
-								setWatched(true);
-							})
-							.catch((err) => console.error(err));
-					} else {
-						setOpenModal(true);
-					}
-				}}>
-				Add to watchlist
-			</button>
-		);
+		if (!watched) {
+			return (
+				<button
+					type='button'
+					onClick={() => {
+						if (userId && jwtToken) {
+							updateMovieInWatchList(
+								userId,
+								movie.id,
+								{
+									id: movie.id,
+									poster_path: movie.poster_path,
+									title: movie.title,
+									finished: false,
+								},
+								jwtToken
+							)
+								.then(() => {
+									setWatched(true);
+								})
+								.catch((err) => console.error(err));
+						} else {
+							setOpenModal(true);
+						}
+					}}>
+					Add to watchlist
+				</button>
+			);
+		} else {
+			return (
+				<button
+					type='button'
+					onClick={() => {
+						if (userId && jwtToken) {
+							deleteMovieFromWatchList(userId, movie.id, jwtToken)
+								.then((res) => {
+									setWatched(false);
+									setFinished(false);
+								})
+								.catch((err) => console.error(err));
+						} else {
+							setOpenModal(true);
+						}
+					}}>
+					Remove from watchlist
+				</button>
+			);
+		}
 	}
-	// !ToDo: Add button to remove from Watchlist
 
 	function renderFinished() {
 		return (
 			<>
 				<input
-					type="checkbox"
-					id="finished"
+					type='checkbox'
+					id='finished'
 					disabled={!watched}
 					checked={finished}
 					onChange={(e) => {
-						setFinished(!finished);
 						if (userId && jwtToken) {
-							updateMovieInWatchList(userId, movieID, { finished: e.target.checked }, jwtToken)
+							updateMovieInWatchList(
+								userId,
+								movieID,
+								{ finished: e.target.checked },
+								jwtToken
+							)
 								.then((res) => {
-									console.log(res);
+									setFinished(e.target.checked);
 								})
 								.catch((err) => console.error(err));
 						}
 					}}
 				/>
-				<label htmlFor="finished">Finished?</label>
+				<label htmlFor='finished'>Finished?</label>
 			</>
 		);
 	}
@@ -114,38 +145,43 @@ function SpecificMoviePage() {
 			return <div>No movie found!</div>;
 		}
 		return (
-			<div className="specificMovieContainer">
-				{!watched ? renderWatched(movie) : null}
+			<div className='specificMovieContainer'>
+				{watched !== null ? renderWatched(movie) : null}
 				{openModal ? <LoginNotification setModal={setOpenModal} /> : null}
 				{userId && jwtToken ? renderFinished() : null}
 				<img
-					className="background"
-					src={`https://image.tmdb.org/t/p/original/${movie["backdrop_path"]}`}
-					alt="Backdrop Poster"
+					className='background'
+					src={`https://image.tmdb.org/t/p/original/${movie['backdrop_path']}`}
+					alt='Backdrop Poster'
 				/>
 				<img
-					className="smPoster"
+					className='smPoster'
 					src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-					alt="Poster"
+					alt='Poster'
 				/>
-				<div className="specificMovieItem">
-					<h2 className="smTitle">{movie.title}</h2>
+				<div className='specificMovieItem'>
+					<h2 className='smTitle'>{movie.title}</h2>
 					<div>Description:</div>
-					<p className="smOverview">{movie.overview}</p>
-					<div className="smGenres">
+					<p className='smOverview'>{movie.overview}</p>
+					<div className='smGenres'>
 						Genre(s):
 						{movie.genres.map((genre) => {
 							return (
-								<span className="smGenre" key={genre.id}>
+								<span className='smGenre' key={genre.id}>
 									{genre.name}
 								</span>
 							);
 						})}
 					</div>
-					<h4 className="smReleaseDate">Release Date: {movie.release_date}</h4>
+					<h4 className='smReleaseDate'>Release Date: {movie.release_date}</h4>
 				</div>
 				<p>{movie.overview}</p>
-				<ReviewsBanner reviews={reviews} movieTitle={movie.title} movieID={movie.id} setFetch={setFetch} />
+				<ReviewsBanner
+					reviews={reviews}
+					movieTitle={movie.title}
+					movieID={movie.id}
+					setFetch={setFetch}
+				/>
 			</div>
 		);
 	}
