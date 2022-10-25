@@ -3,7 +3,7 @@ import Review from '../shared/Review';
 import { fetchReviewsRelatedToUserById } from '../../functions/fetch';
 
 function JournalPage() {
-	const [data, setData] = useState([]);
+	const [data, setData] = useState(null);
 	const userId = localStorage.getItem('userId');
 	const jwtToken = localStorage.getItem('JWT');
 
@@ -24,8 +24,10 @@ function JournalPage() {
 	}, []);
 
 	function renderData() {
-		if (data.length === 0) {
+		if (!data) {
 			return <p>Loading...</p>;
+		} else if (data.length === 0) {
+			return <p>Sorry. You don't have any review in your journal.</p>;
 		} else {
 			return data.map((review, index) => {
 				return <Review key={index} review={review} />;

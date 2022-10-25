@@ -24,8 +24,10 @@ function WatchListPage() {
 	}, []);
 
 	function renderData() {
-		if (data.length === 0) {
+		if (!data) {
 			return <p>Loading...</p>;
+		} else if (data.length === 0) {
+			return <p>Sorry. You don't have any movie in your watchlist.</p>;
 		} else {
 			return data.map((movie) => {
 				return <MovieItem key={movie.id} movie={movie} />;
