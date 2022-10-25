@@ -1,7 +1,7 @@
-import React, { useMemo, useState } from "react";
-import { NavLink } from "react-router-dom";
-import LoginForm from "../shared/LoginForm";
-import SearchBar from "./SearchBar";
+import React, { useMemo, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import LoginForm from '../shared/LoginForm';
+import SearchBar from './SearchBar';
 
 function Navbar({ token, setToken }) {
 	const [openModal, setOpenModal] = useState(false);
@@ -13,13 +13,16 @@ function Navbar({ token, setToken }) {
 	}, [token]);
 
 	return (
-		<div className="navBar">
-			<div className="navLinks">
-				<NavLink to="/" className={"reelsLink"}>
+		<div className='navBar'>
+			<div className='navLinks'>
+				<NavLink to='/' className={'reelsLink'}>
 					Reels
 				</NavLink>
-				<NavLink to="/library" className={"libraryLink"}>
-					Library
+				<NavLink to='/watchlist' className={'watchlistLink'}>
+					Watchlist
+				</NavLink>
+				<NavLink to='/journal' className={'journalLink'}>
+					Journal
 				</NavLink>
 			</div>
 			<SearchBar />
@@ -39,7 +42,9 @@ function Navbar({ token, setToken }) {
 			) : (
 				<>
 					<button onClick={() => setOpenModal(true)}>Login</button>
-					{openModal ? <LoginForm setModal={setOpenModal} setToken={setToken} /> : null}
+					{openModal ? (
+						<LoginForm setModal={setOpenModal} setToken={setToken} />
+					) : null}
 				</>
 			)}
 		</div>
