@@ -211,13 +211,7 @@ export async function fetchMoviesRelatedToUserById(userId, jwtToken, signal) {
 	}
 }
 
-export async function updateMovieInWatchList(
-	userId,
-	movieId,
-	data,
-	jwtToken,
-	signal
-) {
+export async function updateMovieInWatchList(userId, movieId, data, jwtToken) {
 	const searchObject = {
 		api: SERVER,
 		endpoint: `/users/${userId}/movie/${movieId}`,
@@ -225,7 +219,6 @@ export async function updateMovieInWatchList(
 	const url = new URL(`${searchObject.endpoint}`, `${searchObject.api}`);
 	try {
 		const response = await axios.patch(url.href, data, {
-			signal,
 			headers: { Authorization: `bearer ${jwtToken}` },
 		});
 		return response.data;

@@ -64,7 +64,6 @@ function SpecificMoviePage() {
 				type='button'
 				onClick={() => {
 					if (userId && jwtToken) {
-						const abortController = new AbortController();
 						updateMovieInWatchList(
 							userId,
 							movie.id,
@@ -74,8 +73,7 @@ function SpecificMoviePage() {
 								title: movie.title,
 								finished: false,
 							},
-							jwtToken,
-							AbortController.signal
+							jwtToken
 						)
 							.then(() => {
 								setWatched(true);
@@ -126,29 +124,35 @@ function SpecificMoviePage() {
 			return <div>No movie found!</div>;
 		}
 		return (
-
 			<div className='specificMovieContainer'>
 				{!watched ? renderWatched(movie) : null}
 				{openModal ? <LoginNotification setModal={setOpenModal} /> : null}
 				{userId && jwtToken ? renderFinished() : null}
-				<img className="background"
-					src={`https://image.tmdb.org/t/p/original/${movie["backdrop_path"]}`}
-					alt="Backdrop Poster"
-				/>	
-				<img className="smPoster"
+				<img
+					className='background'
+					src={`https://image.tmdb.org/t/p/original/${movie['backdrop_path']}`}
+					alt='Backdrop Poster'
+				/>
+				<img
+					className='smPoster'
 					src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
 					alt='Poster'
 				/>
-				<div className="specificMovieItem">
-					<h2 className="smTitle">{movie.title}</h2>
+				<div className='specificMovieItem'>
+					<h2 className='smTitle'>{movie.title}</h2>
 					<div>Description:</div>
-					<p className="smOverview">{movie.overview}</p>
-					<div className="smGenres">Genre(s):
-					{movie.genres.map((genre) => {
-						return <span className="smGenre" key={genre.id}>{genre.name}</span>;
-					})}
+					<p className='smOverview'>{movie.overview}</p>
+					<div className='smGenres'>
+						Genre(s):
+						{movie.genres.map((genre) => {
+							return (
+								<span className='smGenre' key={genre.id}>
+									{genre.name}
+								</span>
+							);
+						})}
 					</div>
-					<h4 className="smReleaseDate">Release Date: {movie.release_date}</h4>
+					<h4 className='smReleaseDate'>Release Date: {movie.release_date}</h4>
 				</div>
 				<p>{movie.overview}</p>
 				<ReviewsBanner
