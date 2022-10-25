@@ -12,7 +12,6 @@ function App() {
 	const [token, setToken] = useState(localStorage.getItem('JWT') || '');
 
 	return (
-<<<<<<< HEAD
 		<div className='app'>
 			<Navbar token={token} setToken={setToken} />
 			<Routes>
@@ -21,15 +20,6 @@ function App() {
 				<Route path='/journal' element={<JournalPage />}></Route>
 				<Route path='/library/:movieID' element={<SpecificMoviePage />}></Route>
 			</Routes>
-=======
-		<div className="app">
-			<Navbar />	
-				<Routes>
-					<Route path="/" element={<MainPage />}></Route>
-					<Route path="/library" element={<LibraryPage />}></Route>
-					<Route path="/library/:movieID" element={<SpecificMoviePage />}></Route>
-				</Routes>
->>>>>>> b88701c (Update CSS)
 			<Footer />
 		</div>
 	);
