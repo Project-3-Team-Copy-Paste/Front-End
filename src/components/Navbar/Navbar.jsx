@@ -10,7 +10,7 @@ function Navbar({ token, setToken }) {
 
 	const username = useMemo(() => {
 		if (token) {
-			return localStorage.getItem('username');
+			return localStorage.getItem("username");
 		}
 	}, [token]);
 
@@ -20,25 +20,16 @@ function Navbar({ token, setToken }) {
 				<NavLink to="/" className={"reelsLink"}>
 					Reels
 				</NavLink>
-<<<<<<< HEAD
-				{localStorage.getItem('username') ? (
+				{username ? (
 					<>
-						<NavLink to='/watchlist' className={'watchlistLink'}>
+						<NavLink to="/watchlist" className={"watchlistLink"}>
 							Watchlist
 						</NavLink>
-						<NavLink to='/journal' className={'journalLink'}>
+						<NavLink to="/journal" className={"journalLink"}>
 							Journal
 						</NavLink>
 					</>
 				) : null}
-=======
-				<NavLink to="/watchlist" className={"watchlistLink"}>
-					Watchlist
-				</NavLink>
-				<NavLink to="/journal" className={"journalLink"}>
-					Journal
-				</NavLink>
->>>>>>> 38000ce (Add registration form)
 			</div>
 			<SearchBar />
 			{token ? (
@@ -46,10 +37,10 @@ function Navbar({ token, setToken }) {
 					<span>{username}</span>
 					<button
 						onClick={() => {
-							localStorage.removeItem('JWT');
-							localStorage.removeItem('username');
-							localStorage.removeItem('userId');
-							setToken('');
+							localStorage.removeItem("JWT");
+							localStorage.removeItem("username");
+							localStorage.removeItem("userId");
+							setToken("");
 						}}>
 						Logout
 					</button>

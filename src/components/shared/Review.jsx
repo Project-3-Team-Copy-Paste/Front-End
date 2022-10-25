@@ -28,6 +28,7 @@ function Review({ review, movieTitle, setFetch, curUser }) {
 			<h4>{movieTitle}</h4>
 			<p>{review.rating}</p>
 			<p>{review.author.username}</p>
+			<p>{review.body}</p>
 			{renderForm(review.author.username, curUser)}
 		</div>
 	);
