@@ -36,28 +36,31 @@ function ReviewForm({ setModal, setFetch, movieTitle, movieID, curUser }) {
 	}
 
 	return (
-		<div
-			style={{
-				position: "absolute",
-				top: "0%",
-				left: "0%",
-				width: "100vw",
-				height: "100vh",
-				backgroundColor: "hsla(0, 0%, 0%, 0.25)",
-			}}>
-			<div
-				style={{
-					position: "absolute",
-					background: "white",
-					top: "50%",
-					left: "50%",
-					translate: "-50% -50%",
-					minWidth: "25rem",
-					minHeight: "40rem",
-					border: "5px solid black",
-					zIndex: 1,
-				}}>
-				<button onClick={() => setModal(false)}>X</button>
+		<div className="screenDimmer"
+			// style={{
+			// 	position: "absolute",
+			// 	top: "0%",
+			// 	left: "0%",
+			// 	width: "100vw",
+			// 	height: "100vh",
+			// 	backgroundColor: "hsla(0, 0%, 0%, 0.25)",
+			// }}
+			>
+			<button onClick={() => setModal(false)}className="closeFormBtn">X</button> 
+			<div className="modal newReviewForm"
+				// style={{
+				// 	position: "absolute",
+				// 	background: "white",
+				// 	top: "50%",
+				// 	left: "50%",
+				// 	translate: "-50% -50%",
+				// 	minWidth: "25rem",
+				// 	minHeight: "40rem",
+				// 	border: "5px solid black",
+				// 	zIndex: 1,
+				// }}
+				>
+
 				<form
 					action=""
 					style={{
