@@ -9,12 +9,20 @@ const initialValues = {
 
 function ReviewForm({ setModal, setFetch, movieTitle, movieID, curUser }) {
 	const [formValues, setFormValues] = useState(initialValues);
+	console.log(formValues);
 
 	function handleChange(e) {
-		setFormValues({
-			...formValues,
-			[e.target.name]: e.target.value,
-		});
+		if (e.target.name === "rating") {
+			setFormValues({
+				...formValues,
+				rating: Math.max(Math.min(Number(e.target.value ?? 0), 10), 0),
+			});
+		} else {
+			setFormValues({
+				...formValues,
+				[e.target.name]: e.target.value,
+			});
+		}
 	}
 
 	function handleSubmit(e) {
@@ -56,7 +64,15 @@ function ReviewForm({ setModal, setFetch, movieTitle, movieID, curUser }) {
 						value={formValues.body}
 						onChange={handleChange}></textarea>
 					<label htmlFor="rating">Rating</label>
-					<input type="number" name="rating" id="rating" value={formValues.rating} onChange={handleChange} />
+					<input
+						type="number"
+						name="rating"
+						id="rating"
+						min={0}
+						max={10}
+						value={formValues.rating}
+						onChange={handleChange}
+					/>
 					<p>{`Author: ${curUser}`}</p>
 					<button type="submit">Submit</button>
 				</form>
