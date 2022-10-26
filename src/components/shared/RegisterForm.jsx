@@ -34,9 +34,9 @@ function RegisterForm({ setModal }) {
 
 	return (
 		<div className="screenDimmer">
-			<div className="modal registerForm">
-				<button onClick={() => setModal(false)}>X</button>
-				<form
+			<div className="modal registerModal">
+				<button className="closeFormBtn" onClick={() => setModal(false)}>X</button>
+				<form className="registerForm"
 					action=""
 					onSubmit={handleSubmit}>
 					<label htmlFor="username">Username</label>
