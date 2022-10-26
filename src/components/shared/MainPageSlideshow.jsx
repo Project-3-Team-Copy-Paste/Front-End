@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function MainPageSlideshow({ movies }) {
 	const [index, setIndex] = useState(0);
@@ -25,7 +26,9 @@ function MainPageSlideshow({ movies }) {
 			</div>
 			<div className="mainPagePosterText">
 				<h2>Now Playing...</h2>
-				<h3>{movies[index].title}</h3>
+				<Link to={`library/${movies[index].id}`}>
+					<h3>{movies[index].title}</h3>
+				</Link>
 			</div>
 		</div>
 	) : (

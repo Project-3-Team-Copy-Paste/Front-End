@@ -20,7 +20,7 @@ body {
 .app {
 	display: grid;
 	grid-template-columns: minmax(200px, 1fr);
-	grid-template-rows: 50px 1fr 50px;
+	grid-template-rows: 60px 1fr 60px;
 }
 a {
 	color: #c51f5d;
@@ -39,10 +39,10 @@ a:hover {
 	align-items: center;
 	padding: 0 1rem;
 }
-.test{
-    display: flex;
-    width: 66%;
-    justify-content: space-between;
+.test {
+	display: flex;
+	width: 66%;
+	justify-content: space-between;
 }
 .navLinks {
 	display: flex;
@@ -58,12 +58,11 @@ textarea {
 ::placeholder {
 	font-family: sans-serif;
 }
-.userBrick{
-    display: flex;
-    /* align-items: center; */
-    /* justify-content: space-evenly; */
-    column-gap: 5px;
-    
+.userBrick {
+	display: flex;
+	/* align-items: center; */
+	/* justify-content: space-evenly; */
+	column-gap: 5px;
 }
 button {
 	background-color: #141d26;
@@ -97,7 +96,7 @@ button:hover {
 	justify-content: center;
 	align-items: center;
 	grid-row: 2;
-	padding: 1rem;
+	padding-top: 2rem;
 }
 .mainPagePosterContainer {
 	position: relative;
@@ -155,7 +154,7 @@ button:hover {
 }
 .mainPagePosterText h2 {
 	font-size: 3rem;
-	color: #c51f5d;
+	color: white;
 	margin: 0;
 	padding: 0;
 }
@@ -178,6 +177,7 @@ button:hover {
 .movieBannerContainer {
 	grid-row: 1;
 }
+<<<<<<< HEAD
 .reviewTitle {
 	grid-area: reviewTitle;
 	margin: 0px;
@@ -201,6 +201,10 @@ button:hover {
 .reviewEdit {
 	grid-area: reviewEdit;
 	margin: 0px;
+=======
+.movieTitle {
+	margin-inline: 2rem;
+>>>>>>> bb2601d (Change CSS for specific movie page)
 }
 .reviewItem {
 	background-color: black;
@@ -287,7 +291,7 @@ button:hover {
 	display: grid;
 	gap: 1.5rem;
 	grid-template-columns: auto;
-	grid-template-rows: 1fr 1fr;
+	grid-template-rows: 400px 75px 1fr;
 	/* flex-flow: column wrap; */
 	/* justify-content: center; */
 	/* align-items: center; */
@@ -309,33 +313,40 @@ button:hover {
 	grid-row: 1;
 	max-width: 200px;
 	max-height: 300px;
-	border: solid 5px #c51f5d;
+	border: solid 3px #c51f5d;
 	border-radius: 5px;
-	margin-top: 1rem;
-	margin-left: 1rem;
+	margin: 2rem 0 0 2rem;
 	/* background-color: #c51f5d; */
 	/* padding: 5px; */
+}
+.smOptions {
+	grid-column: 2;
+	grid-row: 2;
 }
 .specificMovieItem {
 	background-color: #141d26ab;
 	grid-row: 1;
 	grid-column: 2;
-	margin: 1rem 0 0 0;
-	padding: 1rem 1rem 0 1rem;
-	max-height: 300px;
+	margin: 2rem 0 0 0;
+	/* max-height: 300px; */
+}
+.specificMovieItem > *,
+.smOptions > *,
+.reviewBannerContainer > * {
+	margin-inline: 2rem;
 }
 .smGenres {
 	display: flex;
 	gap: 10px;
 }
-.specificMovieContainer .reviewBannerContainer {
+.specificMovieContainer {
 	grid-column: 1 / span 2;
 	grid-row: 2;
 }
-
 .reviewBannerContainer {
 	background-color: #141d26ab;
-	padding-inline: 1rem;
+	grid-column: 1 / span 2;
+	grid-row: 3;
 }
 
 .reviewBanner {
@@ -425,15 +436,12 @@ button:hover {
 	h2 {
 		text-align: center;
 	}
-	.navBar {
+	.test {
 		flex-direction: column;
-  }
-    .test{
-      flex-direction: column;
-  }
-  .userBrick {
-      flex-direction: column;
-  }
+	}
+	.userBrick {
+		flex-direction: column;
+	}
 	.specificMovieContainer {
 		display: flex;
 		flex-flow: column wrap;
@@ -447,8 +455,17 @@ button:hover {
 		margin-top: 1rem;
 		margin-left: 1rem;
 	}
+	.smTitle {
+		margin: 0.125rem;
+	}
 	.specificMovieItem {
 		background-color: none;
+		margin-top: 0;
+	}
+	.specificMovieItem > *,
+	.smOptions > *,
+	.reviewBannerContainer > * {
+		margin-inline: 1rem;
 	}
 	.mainPagePosterText h2 {
 		font-size: 1.25rem;

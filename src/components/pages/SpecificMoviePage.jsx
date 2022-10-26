@@ -137,15 +137,17 @@ function SpecificMoviePage() {
 		}
 		return (
 			<div className="specificMovieContainer">
-				{watched !== null ? renderWatched(movie) : null}
-				{openModal ? <LoginNotification setModal={setOpenModal} /> : null}
-				{userId && jwtToken ? renderFinished() : null}
 				<img
 					className="smBackground"
 					src={`https://image.tmdb.org/t/p/original/${movie["backdrop_path"]}`}
 					alt="Backdrop Poster"
 				/>
 				<MovieDescription movie={movie} />
+				<div className="smOptions">
+					{watched !== null ? renderWatched(movie) : null}
+					{openModal ? <LoginNotification setModal={setOpenModal} /> : null}
+					{userId && jwtToken ? renderFinished() : null}
+				</div>
 				<ReviewsBanner reviews={reviews} movieTitle={movie.title} movieID={movie.id} setFetch={setFetch} />
 			</div>
 		);
