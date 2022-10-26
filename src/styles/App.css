@@ -6,7 +6,7 @@ body,
 	margin: 0;
 	width: 100%;
 	height: 100%;
-	font-family: "El Messiri", sans-serif;
+	font-family: 'El Messiri', sans-serif;
 	color: #fff;
 }
 body {
@@ -168,19 +168,65 @@ button:hover {
 .movieBannerContainer {
 	grid-row: 1;
 }
+.reviewTitle {
+	grid-area: reviewTitle;
+	margin: 0px;
+}
+.movieTitle {
+	grid-area: movieTitle;
+	margin: 0px;
+}
+.reviewBody {
+	grid-area: reviewBody;
+	margin: 0px;
+}
+.reviewAuthor {
+	grid-area: reviewAuthor;
+	margin: 0px;
+}
+.reviewRating {
+	grid-area: reviewRating;
+	margin: 0px;
+}
+.reviewEdit {
+	grid-area: reviewEdit;
+	margin: 0px;
+}
 .reviewItem {
-	display: flex;
-	flex-flow: column wrap;
+	background-color: black;
 	border: solid 0.15rem #c51f5d;
 	border-radius: 5px;
-	/* border-image-slice: 1;
-    border-image-source: linear-gradient(to right, #141d26, #243447, #c51f5d); */
-	width: 200px;
-	height: 300px;
-	display: flex;
+	width: 300px;
+	height: 250px;
+	/* display: flex;
+	flex-flow: column wrap;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	align-items: center; */
+	/* border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #141d26, #243447, #c51f5d); */
+	display: grid;
+	grid-template-columns: repeat(2, 150px);
+	grid-template-rows: auto;
+	grid-template-areas:
+		'reviewTitle reviewTitle'
+		'movieTitle movieTitle'
+		'reviewBody reviewBody'
+		'reviewAuthor reviewRating'
+		'reviewEdit reviewEdit';
+	align-content: center;
+	justify-items: center;
+	row-gap: 10px;
+	padding: 10px;
+}
+.reviewForm {
+	width: 90%;
+	max-width: 100%;
+	max-height: 100%;
+}
+.readMore {
+	cursor: pointer;
+	text-decoration: underline;
 }
 .movieItemList {
 	display: grid;
@@ -289,6 +335,7 @@ button:hover {
 	min-height: 25rem;
 	border: 3px solid #1d2939;
 	z-index: 2;
+	overflow: auto;
 }
 .closeFormBtn {
 	position: absolute;
