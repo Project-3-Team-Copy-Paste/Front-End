@@ -10,6 +10,7 @@ function MainPageSlideshow({ movies }) {
 				alt="Backdrop Poster"
 				className="mainPagePoster"
 			/>
+			<div className="mainPagePosterGradient" />
 			<div className="mainPagePosterButtonContainer">
 				<button
 					className="mainPagePosterButton"
