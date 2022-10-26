@@ -47,13 +47,12 @@ function ReviewEditForm({ setModal, movieTitle, review, setFetch }) {
 	return (
 		<div className="screenDimmer">
 			<div className="modal editReviewModal">
-				<button onClick={handleDelete} className="deleteReviewBtn">
-					Delete Review
-				</button>
-				<button onClick={() => setModal(false)} className="closeFormBtn">
-					X
-				</button>
-				<form className="editReviewForm" action="" onSubmit={handleSubmit}>
+				<button onClick={handleDelete}
+				className="deleteReviewBtn">Delete Review</button>
+				<button onClick={() => setModal(false)} 	className="closeFormBtn">X</button>
+				<form className="editReviewForm"
+					action=""
+					onSubmit={handleSubmit}>
 					<h3>{movieTitle}</h3>
 					<label htmlFor="title">Title</label>
 					<input

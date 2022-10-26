@@ -15,7 +15,6 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
-	/* font-family: 'El Messiri', sans-serif; */
 }
 .app {
 	display: grid;
@@ -39,11 +38,6 @@ a:hover {
 	align-items: center;
 	padding: 0 1rem;
 }
-.test {
-	display: flex;
-	width: 66%;
-	justify-content: space-between;
-}
 .navLinks {
 	display: flex;
 	gap: 10px;
@@ -58,11 +52,9 @@ textarea {
 ::placeholder {
 	font-family: sans-serif;
 }
-.userBrick {
-	display: flex;
-	/* align-items: center; */
-	/* justify-content: space-evenly; */
-	column-gap: 5px;
+.userBrick{
+    display: flex;
+    column-gap: 5px;
 }
 button {
 	background-color: #141d26;
@@ -136,7 +128,7 @@ button:hover {
 .mainPagePosterButton {
 	font-size: 1.5rem;
 	width: 3rem;
-	background-color: rgba(64, 64, 64, 0.6);
+	background-color: rgba(64, 64, 64, 0.3);
 	border-radius: 0;
 	box-shadow: none;
 	border: none;
@@ -144,7 +136,7 @@ button:hover {
 }
 .mainPagePosterButton:hover {
 	box-shadow: none;
-	background-color: rgba(64, 64, 64, 0.8);
+	background-color: rgba(64, 64, 64, 0.6);
 }
 .mainPagePosterText {
 	position: absolute;
@@ -210,13 +202,6 @@ button:hover {
 	border-radius: 5px;
 	width: 300px;
 	height: 250px;
-	/* display: flex;
-	flex-flow: column wrap;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center; */
-	/* border-image-slice: 1;
-    border-image-source: linear-gradient(to right, #141d26, #243447, #c51f5d); */
 	display: grid;
 	grid-template-columns: repeat(2, 150px);
 	grid-template-rows: auto;
@@ -244,7 +229,7 @@ button:hover {
 }
 .reviewForm {
 	width: clamp(20rem, 80vw, 60rem);
-	height: clamp(35rem, 75vh, 50rem);
+	height: clamp(25rem, 75vh, 50rem);
 	overflow-y: scroll;
 }
 .reviewForm button {
@@ -261,7 +246,6 @@ button:hover {
 	grid-row: 2 / span 1;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	grid-template-rows: minmax(300px, auto);
-	grid-row-gap: 1rem;
 	gap: 1rem;
 	justify-items: center;
 	align-items: center;
@@ -270,8 +254,6 @@ button:hover {
 .movieItem {
 	border: solid 0.15rem #c51f5d;
 	border-radius: 5px;
-	/* border-image-slice: 1;
-    border-image-source: linear-gradient(to right, #141d26, #243447, #c51f5d); */
 	width: 200px;
 	height: 300px;
 	position: relative;
@@ -306,10 +288,7 @@ button:hover {
 	display: grid;
 	gap: 1.5rem;
 	grid-template-columns: auto;
-	grid-template-rows: 400px 75px 1fr;
-	/* flex-flow: column wrap; */
-	/* justify-content: center; */
-	/* align-items: center; */
+	grid-template-rows: auto 75px 1fr;
 	height: 100%;
 	width: 100vw;
 }
@@ -331,8 +310,6 @@ button:hover {
 	border: solid 3px #c51f5d;
 	border-radius: 5px;
 	margin: 2rem 0 0 2rem;
-	/* background-color: #c51f5d; */
-	/* padding: 5px; */
 }
 .smOptions {
 	grid-column: 2;
@@ -343,7 +320,6 @@ button:hover {
 	grid-row: 1;
 	grid-column: 2;
 	margin: 2rem 0 0 0;
-	/* max-height: 300px; */
 }
 .specificMovieItem > *,
 .smOptions > *,
@@ -372,7 +348,6 @@ button:hover {
 .reviewBanner {
 	height: auto;
 }
-
 .screenDimmer {
 	position: fixed;
 	top: 0%;
@@ -408,8 +383,6 @@ button:hover {
 .deleteReviewBtn {
 	position: absolute;
 	align-self: flex-start;
-	/* margin-left: 2px; */
-	/* padding: auto; */
 }
 .editReviewModal {
 	display: flex;
@@ -460,9 +433,6 @@ button:hover {
 	h2 {
 		text-align: center;
 	}
-	.test {
-		flex-direction: column;
-	}
 	.userBrick {
 		flex-direction: column;
 	}
@@ -491,6 +461,7 @@ button:hover {
 	.reviewBannerContainer > *,
 	.movieBannerTitle {
 		margin-inline: 1rem;
+		border: 2px;
 	}
 	.mainPagePosterText h2 {
 		font-size: 1.25rem;
