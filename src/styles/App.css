@@ -6,7 +6,7 @@ body,
 	margin: 0;
 	width: 100%;
 	height: 100%;
-	font-family: 'El Messiri', sans-serif;
+	font-family: "El Messiri", sans-serif;
 	color: #fff;
 }
 body {
@@ -177,7 +177,6 @@ button:hover {
 .movieBannerContainer {
 	grid-row: 1;
 }
-<<<<<<< HEAD
 .reviewTitle {
 	grid-area: reviewTitle;
 	margin: 0px;
@@ -201,10 +200,6 @@ button:hover {
 .reviewEdit {
 	grid-area: reviewEdit;
 	margin: 0px;
-=======
-.movieTitle {
-	margin-inline: 2rem;
->>>>>>> bb2601d (Change CSS for specific movie page)
 }
 .reviewItem {
 	background-color: black;
@@ -223,11 +218,11 @@ button:hover {
 	grid-template-columns: repeat(2, 150px);
 	grid-template-rows: auto;
 	grid-template-areas:
-		'reviewTitle reviewTitle'
-		'movieTitle movieTitle'
-		'reviewBody reviewBody'
-		'reviewAuthor reviewRating'
-		'reviewEdit reviewEdit';
+		"reviewTitle reviewTitle"
+		"movieTitle movieTitle"
+		"reviewBody reviewBody"
+		"reviewAuthor reviewRating"
+		"reviewEdit reviewEdit";
 	align-content: center;
 	justify-items: center;
 	row-gap: 10px;
