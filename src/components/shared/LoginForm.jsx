@@ -31,9 +31,9 @@ function LoginForm({ setModal, setToken }) {
 
 	return (
 		<div className='screenDimmer'>
-			<div>
-				<button onClick={() => setModal(false)}>X</button>
-				<form
+			<div className="modal loginModal" >
+					<button className='closeFormBtn' onClick={() => setModal(false)}>X</button>
+				<form className='loginForm'
 					action=''
 					onSubmit={handleSubmit}>
 					<label htmlFor='username'>Username</label>

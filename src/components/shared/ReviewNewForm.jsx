@@ -33,8 +33,8 @@ function ReviewForm({ setModal, setFetch, movieTitle, movieID, curUser }) {
 	return (
 		<div className="screenDimmer">
 			<button onClick={() => setModal(false)}className="closeFormBtn">X</button> 
-			<div className="modal newReviewForm">
-				<form
+			<div className="modal newReviewModal">
+				<form className="newReviewForm"
 					action=""
 					onSubmit={handleSubmit}>
 					<h3>{movieTitle}</h3>
