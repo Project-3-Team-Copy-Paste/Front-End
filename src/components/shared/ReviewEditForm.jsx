@@ -5,10 +5,17 @@ function ReviewEditForm({ setModal, movieTitle, review, setFetch }) {
 	const [formValues, setFormValues] = useState({ title: review.title, body: review.body, rating: review.rating });
 
 	function handleChange(e) {
-		setFormValues({
-			...formValues,
-			[e.target.name]: e.target.value,
-		});
+		if (e.target.name === "rating") {
+			setFormValues({
+				...formValues,
+				rating: Math.max(Math.min(Number(e.target.value ?? 0), 10), 0),
+			});
+		} else {
+			setFormValues({
+				...formValues,
+				[e.target.name]: e.target.value,
+			});
+		}
 	}
 
 	function handleSubmit(e) {
@@ -40,12 +47,13 @@ function ReviewEditForm({ setModal, movieTitle, review, setFetch }) {
 	return (
 		<div className="screenDimmer">
 			<div className="modal editReviewModal">
-				<button onClick={handleDelete}
-				className="deleteReviewBtn">Delete Review</button>
-				<button onClick={() => setModal(false)} 	className="closeFormBtn">X</button>
-				<form className="editReviewForm"
-					action=""
-					onSubmit={handleSubmit}>
+				<button onClick={handleDelete} className="deleteReviewBtn">
+					Delete Review
+				</button>
+				<button onClick={() => setModal(false)} className="closeFormBtn">
+					X
+				</button>
+				<form className="editReviewForm" action="" onSubmit={handleSubmit}>
 					<h3>{movieTitle}</h3>
 					<label htmlFor="title">Title</label>
 					<input
@@ -63,18 +71,18 @@ function ReviewEditForm({ setModal, movieTitle, review, setFetch }) {
 						cols="30"
 						rows="10"
 						value={formValues.body}
-						onChange={handleChange}
-						>
-					</textarea>
+						onChange={handleChange}></textarea>
 					<label htmlFor="rating">Rating</label>
 					<input
 						type="number"
 						name="rating"
 						id="rating"
+						min={0}
+						max={10}
 						value={formValues.rating}
 						onChange={handleChange}
 					/>
-					<div>{`Author: ${review.author}`}</div>
+					<div>{`Author: ${review.author.username}`}</div>
 					<button type="submit">Submit</button>
 				</form>
 			</div>

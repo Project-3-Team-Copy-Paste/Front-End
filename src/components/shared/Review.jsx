@@ -25,7 +25,7 @@ function Review({ review, movieTitle, setFetch, curUser }) {
 	return (
 		<div className="reviewItem">
 			<h3>{review.title}</h3>
-			<h4>{movieTitle}</h4>
+			<h4>{review.movie_title}</h4>
 			<p>{review.rating}</p>
 			<p>{review.author.username}</p>
 			<p>{review.body}</p>
