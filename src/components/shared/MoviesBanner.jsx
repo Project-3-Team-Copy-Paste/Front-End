@@ -4,7 +4,7 @@ import MovieItem from "./MovieItem";
 function MoviesBanner({ movies }) {
 	return (
 		<div className="bannerContainer movieBannerContainer">
-			<h2 className="movieTitle">Movies</h2>
+			<h2 className="movieBannerTitle">Trending Movies</h2>
 			<div className="banner movieBanner">
 				{movies.length > 0 ? (
 					movies.map((movie) => <MovieItem key={movie.id} movie={movie} />)
