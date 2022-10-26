@@ -285,8 +285,8 @@ button:hover {
 	top: 50%;
 	left: 50%;
 	translate: -50% -50%;
-	min-width: minmax(33%, 10px);
-	min-height: 50%;
+	min-width: min(75vw, 20rem);
+	min-height: 25rem;
 	border: 3px solid #1d2939;
 	z-index: 2;
 }
