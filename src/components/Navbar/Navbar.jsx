@@ -16,22 +16,25 @@ function Navbar({ token, setToken }) {
 
 	return (
 		<div className="navBar">
-			<div className="navLinks">
-				<NavLink to="/" className={"reelsLink"}>
-					Reels
-				</NavLink>
-				{username ? (
-					<>
-						<NavLink to="/watchlist" className={"watchlistLink"}>
-							Watchlist
-						</NavLink>
-						<NavLink to="/journal" className={"journalLink"}>
-							Journal
-						</NavLink>
-					</>
-				) : null}
+			<div className="linkFormBrick">
+				<div className="navLinks">
+					<NavLink to="/" className={"reelsLink"}>
+						Reels
+					</NavLink>
+					{username ? (
+						<>
+							<NavLink to="/watchlist" className={"watchlistLink"}>
+								Watchlist
+							</NavLink>
+							<NavLink to="/journal" className={"journalLink"}>
+								Journal
+							</NavLink>
+						</>
+					) : null}
+				</div>
+				<SearchBar />
 			</div>
-			<SearchBar />
+			
 			{token ? (
 				<div className='userBrick'>
 					<div className='username'>{username}</div>
@@ -47,10 +50,12 @@ function Navbar({ token, setToken }) {
 				</div>
 			) : (
 				<div className='userBrick'>
-					<button onClick={() => setOpenLogin(true)}>Login</button>
-					<button onClick={() => setOpenRegister(true)}>Register</button>
+
+					<button onClick={() => setOpenLogin(true)}>login</button>
+					<button onClick={() => setOpenRegister(true)}>register</button>
 					{openLogin ? <LoginForm setModal={setOpenLogin} setToken={setToken} /> : null}
 					{openRegister ? <RegisterForm setModal={setOpenRegister} /> : null}
+
 				</div>
 			)}
 		</div>
