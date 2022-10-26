@@ -37,11 +37,16 @@ a:hover {
 	background-color: #19243178;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0 1.5rem;
+	padding: 0 1rem;
+}
+.test{
+    display: flex;
+    width: 66%;
+    justify-content: space-between;
 }
 .navLinks {
 	display: flex;
-	gap: 15px;
+	gap: 10px;
 }
 input,
 textarea {
@@ -50,11 +55,16 @@ textarea {
 	text-align: center;
 	border-radius: 6px;
 }
-
 ::placeholder {
 	font-family: sans-serif;
 }
-
+.userBrick{
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: space-evenly; */
+    column-gap: 5px;
+    
+}
 button {
 	background-color: #141d26;
 	font-family: sans-serif;
@@ -351,7 +361,13 @@ button:hover {
 	}
 	.navBar {
 		flex-direction: column;
-	}
+  }
+    .test{
+      flex-direction: column;
+  }
+  .userBrick {
+      flex-direction: column;
+  }
 	.specificMovieContainer {
 		display: flex;
 		flex-flow: column wrap;
