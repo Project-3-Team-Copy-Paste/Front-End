@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Reelz
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The front-end for a fullstack app for creating watchlists of movies, reviewing previously watched movies, and reading movie reviews from other users. Through an external, third-party API, the user can search a database of movies and create their own reviews/ratings of movies once they're finished, which will then be stored and tracked through our database on the back-end.
 
-## Available Scripts
+![image](https://user-images.githubusercontent.com/110881795/198110051-5a3edce3-ee7c-4cc7-8531-d13794721fb1.png)
 
-In the project directory, you can run:
+## Current Features
 
-### `npm start`
+- Users can see the trending movies and most recent reviews on the front page
+- Users can navigate to a page showing the details of the specific movie and the most recent reviews of that movie
+- Users can register for an account with a secure, hashed password
+- Users can sign in to their account to see a personalized watchlist of all their movies and a journal of all their reviews
+- Users can create, edit, and delete their own reviews for specific movies.
+- Users can add and remove movies on their watchlist and mark them as finished or unfinished.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+React, Express (Passport.js), MongoDB (Mongoose)
 
-### `npm test`
+## Getting Started / Installation Instructions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Fork and clone both the front-end and the back-end repository.
+2. Run `npm install` on both repositories.
+3. Run `nodemon` on back-end repository.
+4. Run `npm start` on front-end repository
 
-### `npm run build`
+## User Stories
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+MVP:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Compile a library of movies I've seen and/or movies I would like to watch in the future.
+- Create, read, update, and delete reviews for specific movies.
+- See all the reviews for specific movies.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Stretch:
 
-### `npm run eject`
+- See all reviews written by specific users.
+- See the library of movies I've built.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Wireframes
+[The MIRO board.](https://miro.com/app/board/uXjVPNFJ2Pc=/) 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img width="803" alt="Screen Shot 2022-10-19 at 5 06 06 PM" src="https://user-images.githubusercontent.com/107736662/196813779-051cc19a-0c5d-4384-8b9c-e6da381cf2a1.png">
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<img width="707" alt="Screen Shot 2022-10-19 at 5 07 29 PM" src="https://user-images.githubusercontent.com/107736662/196813875-469b44d5-d15d-44d2-9d10-d79e6b023f6e.png">
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<img width="916" alt="Screen Shot 2022-10-19 at 5 08 13 PM" src="https://user-images.githubusercontent.com/107736662/196813946-6260e46f-edd1-4f11-826d-26b618d521fd.png">
 
-## Learn More
+## Contribution Guidelines
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to submit proposal changes and feature ideas by submitting an issue ticket.
