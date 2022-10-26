@@ -32,11 +32,11 @@ function ReviewForm({ setModal, setFetch, movieTitle, movieID, curUser }) {
 
 	return (
 		<div className="screenDimmer">
-			<button onClick={() => setModal(false)}className="closeFormBtn">X</button> 
 			<div className="modal newReviewModal">
-				<form className="newReviewForm"
-					action=""
-					onSubmit={handleSubmit}>
+				<button onClick={() => setModal(false)} className="closeFormBtn">
+					X
+				</button>
+				<form className="newReviewForm" action="" onSubmit={handleSubmit}>
 					<h3>{movieTitle}</h3>
 					<label htmlFor="title">Title</label>
 					<input
@@ -54,17 +54,9 @@ function ReviewForm({ setModal, setFetch, movieTitle, movieID, curUser }) {
 						cols="30"
 						rows="10"
 						value={formValues.body}
-						onChange={handleChange}
-						>
-						</textarea>
+						onChange={handleChange}></textarea>
 					<label htmlFor="rating">Rating</label>
-					<input
-						type="number"
-						name="rating"
-						id="rating"
-						value={formValues.rating}
-						onChange={handleChange}
-					/>
+					<input type="number" name="rating" id="rating" value={formValues.rating} onChange={handleChange} />
 					<p>{`Author: ${curUser}`}</p>
 					<button type="submit">Submit</button>
 				</form>

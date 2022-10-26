@@ -2,12 +2,12 @@ html,
 body,
 #root,
 .app {
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    font-family: 'El Messiri', sans-serif;
-    color: #fff;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	font-family: "El Messiri", sans-serif;
+	color: #fff;
 }
 body {
 	background-image: linear-gradient(to bottom right, #141d26, #243447, #c51f5d);
@@ -15,7 +15,7 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
-    /* font-family: 'El Messiri', sans-serif; */
+	/* font-family: 'El Messiri', sans-serif; */
 }
 .app {
 	display: grid;
@@ -45,10 +45,10 @@ a:hover {
 }
 input,
 textarea {
-    background-color: #243447;
-    color: white;
-    text-align: center;
-    border-radius: 6px;
+	background-color: #243447;
+	color: white;
+	text-align: center;
+	border-radius: 6px;
 }
 
 ::placeholder {
@@ -89,6 +89,71 @@ button:hover {
 	grid-row: 2;
 	padding: 1rem;
 }
+.mainPagePosterContainer {
+	position: relative;
+	width: min(90vw, 90rem);
+}
+.mainPagePoster {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+	z-index: -2;
+}
+.mainPagePosterGradient {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0%;
+	left: 0%;
+	background: linear-gradient(
+		rgba(0, 0, 0, 0) 0px,
+		rgba(0, 0, 0, 0) 65%,
+		rgba(0, 0, 0, 0.6) 83.5%,
+		rgba(0, 0, 0, 0.85)
+	);
+	z-index: 0;
+}
+.mainPagePosterButtonContainer {
+	position: absolute;
+	z-index: 0;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: space-between;
+}
+.mainPagePosterButton {
+	font-size: 1.5rem;
+	width: 3rem;
+	background-color: rgba(64, 64, 64, 0.6);
+	border-radius: 0;
+	box-shadow: none;
+	border: none;
+	font-weight: 700;
+}
+.mainPagePosterButton:hover {
+	box-shadow: none;
+	background-color: rgba(64, 64, 64, 0.8);
+}
+.mainPagePosterText {
+	position: absolute;
+	z-index: 0;
+	bottom: 5%;
+	left: 10%;
+}
+.mainPagePosterText h2 {
+	font-size: 3rem;
+	color: #c51f5d;
+	margin: 0;
+	padding: 0;
+}
+.mainPagePosterText h3 {
+	font-size: 2rem;
+	margin: 0;
+	padding: 0;
+}
 .bannerContainer {
 	width: 100%;
 }
@@ -101,44 +166,44 @@ button:hover {
 	padding-bottom: 1rem;
 }
 .movieBannerContainer {
-    grid-row: 1;
+	grid-row: 1;
 }
-.reviewItem{
-    display: flex;
-    flex-flow: column wrap;
-    border: solid .15rem #c51f5d;
-    border-radius: 5px;
-    /* border-image-slice: 1;
+.reviewItem {
+	display: flex;
+	flex-flow: column wrap;
+	border: solid 0.15rem #c51f5d;
+	border-radius: 5px;
+	/* border-image-slice: 1;
     border-image-source: linear-gradient(to right, #141d26, #243447, #c51f5d); */
-    width: 200px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+	width: 200px;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 .movieItemList {
-    display: grid;
-    grid-column: 1;
-    grid-row: 2 /span 1;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-template-rows: minmax(300px, auto);
-    grid-row-gap: 1rem;
-    justify-items: center;
-    align-items: center;
+	display: grid;
+	grid-column: 1;
+	grid-row: 2 / span 1;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	grid-template-rows: minmax(300px, auto);
+	grid-row-gap: 1rem;
+	justify-items: center;
+	align-items: center;
 }
 .movieItem {
-    border: solid .15rem #c51f5d;
-    border-radius: 5px;
-    /* border-image-slice: 1;
+	border: solid 0.15rem #c51f5d;
+	border-radius: 5px;
+	/* border-image-slice: 1;
     border-image-source: linear-gradient(to right, #141d26, #243447, #c51f5d); */
-    width: 200px;
-    height: 300px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+	width: 200px;
+	height: 300px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 .movieItemPoster {
 	position: absolute;
@@ -150,7 +215,7 @@ button:hover {
 .hidden {
 	visibility: hidden;
 	width: 100%;
-	z-index: 1;
+	z-index: 0;
 	background-color: rgba(64, 64, 64, 0.5);
 	text-align: center;
 }
@@ -178,14 +243,14 @@ button:hover {
 	z-index: -1;
 }
 .smPoster {
-    grid-column: 1;
-    grid-row: 1;
-    max-width: 200px;
-    max-height: 300px;
-    border: solid 5px #c51f5d;
-    border-radius: 5px;
-    /* background-color: #c51f5d; */
-    /* padding: 5px; */
+	grid-column: 1;
+	grid-row: 1;
+	max-width: 200px;
+	max-height: 300px;
+	border: solid 5px #c51f5d;
+	border-radius: 5px;
+	/* background-color: #c51f5d; */
+	/* padding: 5px; */
 }
 .specificMovieItem {
 	background-color: #141d26ab;
@@ -203,107 +268,115 @@ button:hover {
 }
 
 .screenDimmer {
-    position: fixed;
-    top: 0%;
-    left: 0%;
-    width: 100%;
-    height: 100%;
-    background-color: hsla(0, 0%, 0%, 0.75);
-    z-index: 1
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: hsla(0, 0%, 0%, 0.75);
+	z-index: 1;
 }
 .modal {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(to bottom right, #141d26, #243447, #c51f5d);
-    background-attachment: fixed;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    min-width: minmax(33%, 10px);
-    min-height: 50%;
-    border: 3px solid #1d2939;
-    z-index: 2;
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	background: linear-gradient(to bottom right, #141d26, #243447, #c51f5d);
+	background-attachment: fixed;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+	min-width: min(75vw, 20rem);
+	min-height: 25rem;
+	border: 3px solid #1d2939;
+	z-index: 2;
 }
-.closeFormBtn{
-    position: absolute;
-    align-self: flex-end;
-    margin-right: 2px;
-    padding: auto;
+.closeFormBtn {
+	position: absolute;
+	align-self: flex-end;
+	margin-right: 2px;
+	padding: auto;
 }
 .deleteReviewBtn {
-    position: absolute;
-    align-self: flex-start;
-    /* margin-left: 2px; */
-    /* padding: auto; */
+	position: absolute;
+	align-self: flex-start;
+	/* margin-left: 2px; */
+	/* padding: auto; */
 }
 .editReviewModal {
-    display:flex;
-    flex-direction: column;
-    justify-content: flex-start
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
 }
 .modalNav {
-    display: flex;
-    height: auto;
-    width: inherit;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0;
-    padding-right: 3px;
+	display: flex;
+	height: auto;
+	width: inherit;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0;
+	padding-right: 3px;
 }
-.editReviewForm{
-    display: flex;
-    flex-direction: column;
-    margin: 2rem;
-    justify-content: flex-start;
-    gap: 1rem;
+.editReviewForm {
+	display: flex;
+	flex-direction: column;
+	margin: 2rem;
+	justify-content: flex-start;
+	gap: 1rem;
 }
-.newReviewForm{
-    display: flex;
-    flex-direction: column;
-    margin: 2rem;
-    justify-content: flex-start;
-    gap: 1rem;
+.newReviewForm {
+	display: flex;
+	flex-direction: column;
+	margin: 2rem;
+	justify-content: flex-start;
+	gap: 1rem;
 }
-.loginForm{
-    display: flex;
-    flex-direction: column;
-    margin: 2rem;
-    justify-content: flex-start;
-    gap: 1rem;
+.loginForm {
+	display: flex;
+	flex-direction: column;
+	margin: 2rem;
+	justify-content: flex-start;
+	gap: 1rem;
 }
-.registerForm{
-    display: flex;
-    flex-direction: column;
-    margin: 2rem;
-    justify-content: flex-start;
-    gap: 1rem;
+.registerForm {
+	display: flex;
+	flex-direction: column;
+	margin: 2rem;
+	justify-content: flex-start;
+	gap: 1rem;
 }
 
 @media (max-width: 600px) {
-    h2{
-        text-align: center;
-    }
-    .navBar{
-        flex-direction: column;
-    }
-    .specificMovieContainer {
-        display: flex;
-        flex-flow: column wrap;
-        height: 100%;
-        width: 100vw;
-    }
-    .smPoster {
-        max-width: 150px;
-        max-height: 200px;
-        border: 2px;
-    }
-    .specificMovieItem {
-        background-color: none;
-    }
-    .mainPagePosterButton {
-        color: #c51f5d
-    }
-    /* .specificMovieContainer .reviewBannerContainer {
-    } */
+	h2 {
+		text-align: center;
+	}
+	.navBar {
+		flex-direction: column;
+	}
+	.specificMovieContainer {
+		display: flex;
+		flex-flow: column wrap;
+		height: 100%;
+		width: 100vw;
+	}
+	.smPoster {
+		max-width: 150px;
+		max-height: 200px;
+		border: 2px;
+	}
+	.specificMovieItem {
+		background-color: none;
+	}
+	.mainPagePosterText h2 {
+		font-size: 1.25rem;
+		text-align: left;
+	}
+	.mainPagePosterText h3 {
+		font-size: 1rem;
+	}
+	.mainPagePosterButton {
+		font-size: 1.5rem;
+		width: 1.75rem;
+		font-weight: 500;
+		color: #c51f5d;
+	}
 }
