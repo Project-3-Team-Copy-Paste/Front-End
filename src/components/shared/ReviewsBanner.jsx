@@ -15,19 +15,31 @@ function ReviewsBanner({ reviews, movieTitle, movieID, setFetch }) {
 		} else if (reviews.length === 0) {
 			return <p>Be the first to leave a review!</p>;
 		} else {
-			const output =
-				index !== -1
-					? [reviews[index], ...reviews.filter((review) => review.author.username !== curUser)]
-					: reviews;
-			return output.map((review) => (
-				<Review
-					key={review._id}
-					review={review}
-					movieTitle={movieTitle}
-					setFetch={setFetch}
-					curUser={curUser}
-				/>
-			));
+			if (movieTitle) {
+				const output =
+					index !== -1
+						? [reviews[index], ...reviews.filter((review) => review.author.username !== curUser)]
+						: reviews;
+				return output.map((review) => (
+					<Review
+						key={review._id}
+						review={review}
+						movieTitle={review.movie_title}
+						setFetch={setFetch}
+						curUser={curUser}
+					/>
+				));
+			} else {
+				return reviews.map((review) => (
+					<Review
+						key={review._id}
+						review={review}
+						movieTitle={review.movie_title}
+						setFetch={setFetch}
+						curUser={curUser}
+					/>
+				));
+			}
 		}
 	}
 
@@ -61,7 +73,7 @@ function ReviewsBanner({ reviews, movieTitle, movieID, setFetch }) {
 
 	return (
 		<div className="bannerContainer reviewBannerContainer">
-			<h2>Reviews</h2>
+			<h2>Recent Reviews</h2>
 			{addForm(movieTitle, movieID, curUser)}
 			<div className="banner reviewBanner">{renderReviews(reviews, curUser)}</div>
 		</div>

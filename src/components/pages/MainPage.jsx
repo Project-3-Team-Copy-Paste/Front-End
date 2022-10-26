@@ -14,7 +14,7 @@ function MainPage() {
 		Promise.all([fetchTrendingMovies(abortController.signal), fetchAllReviews(abortController.signal)])
 			.then(([{ results }, reviews]) => {
 				setMovies(results);
-				setReviews(reviews.length > 3 ? reviews.slice(0, 3) : reviews);
+				setReviews(reviews.length > 4 ? reviews.slice(0, 4) : reviews);
 			})
 			.catch((err) => {
 				if (!abortController.signal.aborted) {

@@ -177,6 +177,9 @@ button:hover {
 .movieBannerContainer {
 	grid-row: 1;
 }
+.movieBannerTitle {
+	margin-inline: 2rem;
+}
 .reviewTitle {
 	grid-area: reviewTitle;
 	margin: 0px;
@@ -228,10 +231,25 @@ button:hover {
 	row-gap: 10px;
 	padding: 10px;
 }
+.reviewItemList {
+	display: grid;
+	grid-column: 1;
+	grid-row: 2 / span 1;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	grid-template-rows: minmax(300px, auto);
+	gap: 1rem;
+	justify-items: center;
+	align-items: center;
+	margin-inline: 1rem;
+}
 .reviewForm {
-	width: 90%;
-	max-width: 100%;
-	max-height: 100%;
+	width: clamp(20rem, 80vw, 60rem);
+	height: clamp(35rem, 75vh, 50rem);
+	overflow-y: scroll;
+}
+.reviewForm button {
+	width: clamp(10rem, 20vw, 15rem);
+	align-self: center;
 }
 .readMore {
 	cursor: pointer;
@@ -244,8 +262,10 @@ button:hover {
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	grid-template-rows: minmax(300px, auto);
 	grid-row-gap: 1rem;
+	gap: 1rem;
 	justify-items: center;
 	align-items: center;
+	margin-inline: 1rem;
 }
 .movieItem {
 	border: solid 0.15rem #c51f5d;
@@ -343,7 +363,12 @@ button:hover {
 	grid-column: 1 / span 2;
 	grid-row: 3;
 }
-
+.switch {
+	margin-inline: 0;
+}
+.switchText {
+	margin-inline: 1rem;
+}
 .reviewBanner {
 	height: auto;
 }
@@ -463,7 +488,8 @@ button:hover {
 	}
 	.specificMovieItem > *,
 	.smOptions > *,
-	.reviewBannerContainer > * {
+	.reviewBannerContainer > *,
+	.movieBannerTitle {
 		margin-inline: 1rem;
 	}
 	.mainPagePosterText h2 {

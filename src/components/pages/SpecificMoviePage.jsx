@@ -10,6 +10,7 @@ import {
 import ReviewsBanner from "../shared/ReviewsBanner";
 import LoginNotification from "../shared/LoginNotification";
 import MovieDescription from "../shared/MovieDescription";
+import "../../styles/FancyCheckbox.css";
 
 function SpecificMoviePage() {
 	const [data, setData] = useState(null);
@@ -112,21 +113,27 @@ function SpecificMoviePage() {
 	function renderFinished() {
 		return (
 			<>
-				<input
-					type="checkbox"
-					id="finished"
-					disabled={!watched}
-					checked={finished}
-					onChange={(e) => {
-						if (userId && jwtToken) {
-							setFinished(e.target.checked);
-							updateMovieInWatchList(userId, movieID, { finished: e.target.checked }, jwtToken).catch(
-								(err) => console.error(err)
-							);
-						}
-					}}
-				/>
-				<label htmlFor="finished">Finished?</label>
+				<div className="switch">
+					<input
+						type="checkbox"
+						id="finished"
+						className="switchInput"
+						disabled={!watched}
+						checked={finished}
+						onChange={(e) => {
+							if (userId && jwtToken) {
+								setFinished(e.target.checked);
+								updateMovieInWatchList(userId, movieID, { finished: e.target.checked }, jwtToken).catch(
+									(err) => console.error(err)
+								);
+							}
+						}}
+					/>
+					<label className="switchLabel" htmlFor="finished">
+						Switch
+					</label>
+				</div>
+				<span className="switchText">Finished?</span>
 			</>
 		);
 	}
