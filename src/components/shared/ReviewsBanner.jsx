@@ -35,7 +35,11 @@ function ReviewsBanner({ reviews, movieTitle, movieID, setFetch }) {
 		if (movieTitle && movieID) {
 			return (
 				<>
-					{index === -1 ? <button onClick={() => setOpenModal(true)} className="addReviewBtn">Add review</button> : null}
+					{index === -1 ? (
+						<button onClick={() => setOpenModal(true)} className="addReviewBtn">
+							Add review
+						</button>
+					) : null}
 					{openModal ? (
 						curUser ? (
 							<ReviewNewForm
@@ -58,8 +62,8 @@ function ReviewsBanner({ reviews, movieTitle, movieID, setFetch }) {
 	return (
 		<div className="bannerContainer reviewBannerContainer">
 			<h2>Reviews</h2>
-			<div className="banner reviewBanner">{renderReviews(reviews, curUser)}</div>
 			{addForm(movieTitle, movieID, curUser)}
+			<div className="banner reviewBanner">{renderReviews(reviews, curUser)}</div>
 		</div>
 	);
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReviewsBanner from "../shared/ReviewsBanner";
 import MoviesBanner from "../shared/MoviesBanner";
-import MovieDescription from "../shared/MovieDescription";
 import { fetchAllReviews, fetchTrendingMovies } from "../../functions/fetch";
 import MainPageSlideshow from "../shared/MainPageSlideshow";
 
@@ -31,7 +30,6 @@ function MainPage() {
 		return (
 			<div className="mainPage">
 				<MainPageSlideshow movies={movies} />
-				{/* <MovieDescription movie={movies[0]} /> */}
 				<MoviesBanner movies={movies.length > 0 ? [movies[0], movies[1], movies[2]] : []} />
 				<ReviewsBanner reviews={reviews} setFetch={setFetch} />
 			</div>

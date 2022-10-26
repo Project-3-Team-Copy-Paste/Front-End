@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import {
 	fetchMovieById,
 	fetchReviewsByMovieId,
 	fetchMoviesRelatedToUserById,
 	updateMovieInWatchList,
 	deleteMovieFromWatchList,
-} from '../../functions/fetch';
-import ReviewsBanner from '../shared/ReviewsBanner';
-import LoginNotification from '../shared/LoginNotification';
-import MovieDescription from '../shared/MovieDescription';
+} from "../../functions/fetch";
+import ReviewsBanner from "../shared/ReviewsBanner";
+import LoginNotification from "../shared/LoginNotification";
+import MovieDescription from "../shared/MovieDescription";
 
 function SpecificMoviePage() {
 	const [data, setData] = useState(null);
@@ -19,8 +19,8 @@ function SpecificMoviePage() {
 	const [openModal, setOpenModal] = useState(false);
 	const [watched, setWatched] = useState(null);
 	const { movieID } = useParams();
-	const userId = localStorage.getItem('userId');
-	const jwtToken = localStorage.getItem('JWT');
+	const userId = localStorage.getItem("userId");
+	const jwtToken = localStorage.getItem("JWT");
 
 	useEffect(() => {
 		const abortController = new AbortController();
@@ -32,11 +32,7 @@ function SpecificMoviePage() {
 				setData(movie);
 				setReviews(reviews);
 				if (userId && jwtToken) {
-					fetchMoviesRelatedToUserById(
-						userId,
-						jwtToken,
-						abortController.signal
-					).then((watchlist) => {
+					fetchMoviesRelatedToUserById(userId, jwtToken, abortController.signal).then((watchlist) => {
 						const foundMovie = watchlist.find((movie) => movie.id === movieID);
 						if (foundMovie !== undefined) {
 							setWatched(true);
@@ -66,7 +62,7 @@ function SpecificMoviePage() {
 		if (!watched) {
 			return (
 				<button
-					type='button'
+					type="button"
 					onClick={() => {
 						if (userId && jwtToken) {
 							updateMovieInWatchList(
@@ -94,7 +90,7 @@ function SpecificMoviePage() {
 		} else {
 			return (
 				<button
-					type='button'
+					type="button"
 					onClick={() => {
 						if (userId && jwtToken) {
 							deleteMovieFromWatchList(userId, movie.id, jwtToken)
@@ -117,23 +113,20 @@ function SpecificMoviePage() {
 		return (
 			<>
 				<input
-					type='checkbox'
-					id='finished'
+					type="checkbox"
+					id="finished"
 					disabled={!watched}
 					checked={finished}
 					onChange={(e) => {
 						if (userId && jwtToken) {
 							setFinished(e.target.checked);
-							updateMovieInWatchList(
-								userId,
-								movieID,
-								{ finished: e.target.checked },
-								jwtToken
-							).catch((err) => console.error(err));
+							updateMovieInWatchList(userId, movieID, { finished: e.target.checked }, jwtToken).catch(
+								(err) => console.error(err)
+							);
 						}
 					}}
 				/>
-				<label htmlFor='finished'>Finished?</label>
+				<label htmlFor="finished">Finished?</label>
 			</>
 		);
 	}
@@ -143,22 +136,17 @@ function SpecificMoviePage() {
 			return <div>No movie found!</div>;
 		}
 		return (
-			<div className='specificMovieContainer'>
+			<div className="specificMovieContainer">
 				{watched !== null ? renderWatched(movie) : null}
 				{openModal ? <LoginNotification setModal={setOpenModal} /> : null}
 				{userId && jwtToken ? renderFinished() : null}
 				<img
-					className='background'
-					src={`https://image.tmdb.org/t/p/original/${movie['backdrop_path']}`}
-					alt='Backdrop Poster'
+					className="smBackground"
+					src={`https://image.tmdb.org/t/p/original/${movie["backdrop_path"]}`}
+					alt="Backdrop Poster"
 				/>
 				<MovieDescription movie={movie} />
-				<ReviewsBanner
-					reviews={reviews}
-					movieTitle={movie.title}
-					movieID={movie.id}
-					setFetch={setFetch}
-				/>
+				<ReviewsBanner reviews={reviews} movieTitle={movie.title} movieID={movie.id} setFetch={setFetch} />
 			</div>
 		);
 	}

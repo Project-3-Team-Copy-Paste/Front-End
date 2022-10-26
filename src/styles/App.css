@@ -283,7 +283,9 @@ button:hover {
 	opacity: 0.5;
 }
 .specificMovieContainer {
+	position: relative;
 	display: grid;
+	gap: 1.5rem;
 	grid-template-columns: auto;
 	grid-template-rows: 1fr 1fr;
 	/* flex-flow: column wrap; */
@@ -292,11 +294,15 @@ button:hover {
 	height: 100%;
 	width: 100vw;
 }
-.background {
+.smBackground {
 	justify-self: flex-start;
 	position: absolute;
-	width: 100vw;
 	z-index: -1;
+	width: 100%;
+	max-height: 100%;
+	top: 0;
+	left: 0;
+	object-fit: cover;
 }
 .smPoster {
 	grid-column: 1;
@@ -305,6 +311,8 @@ button:hover {
 	max-height: 300px;
 	border: solid 5px #c51f5d;
 	border-radius: 5px;
+	margin-top: 1rem;
+	margin-left: 1rem;
 	/* background-color: #c51f5d; */
 	/* padding: 5px; */
 }
@@ -312,7 +320,9 @@ button:hover {
 	background-color: #141d26ab;
 	grid-row: 1;
 	grid-column: 2;
-	max-height: 310px;
+	margin: 1rem 0 0 0;
+	padding: 1rem 1rem 0 1rem;
+	max-height: 300px;
 }
 .smGenres {
 	display: flex;
@@ -321,6 +331,15 @@ button:hover {
 .specificMovieContainer .reviewBannerContainer {
 	grid-column: 1 / span 2;
 	grid-row: 2;
+}
+
+.reviewBannerContainer {
+	background-color: #141d26ab;
+	padding-inline: 1rem;
+}
+
+.reviewBanner {
+	height: auto;
 }
 
 .screenDimmer {
@@ -424,7 +443,9 @@ button:hover {
 	.smPoster {
 		max-width: 150px;
 		max-height: 200px;
-		border: 2px;
+		border: 2px solid #c51f5d;
+		margin-top: 1rem;
+		margin-left: 1rem;
 	}
 	.specificMovieItem {
 		background-color: none;
